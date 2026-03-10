@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leonardo Bornhaeusser — Product & Technology Leadership</title>
-  <meta name="description" content="I help companies build products, lead teams, and bridge the gap between technology and business impact.">
+  <meta name="description" content="I help companies build products, lead teams, and bridge the gap between technology and business impact." data-i18n-meta="description">
+  <link rel="alternate" hreflang="en" href="https://adminleo.github.io/adminleo-portfolio/">
+  <link rel="alternate" hreflang="de" href="https://adminleo.github.io/adminleo-portfolio/?lang=de">
+  <link rel="alternate" hreflang="x-default" href="https://adminleo.github.io/adminleo-portfolio/">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -943,6 +946,38 @@
       }
     }
 
+    /* ─── Language Switcher ─── */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-left: 0.5rem;
+    }
+    .lang-switch:hover {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+      background: rgba(6,182,212,0.05);
+    }
+    .lang-switch .lang-flag {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+    @media print {
+      .lang-switch { display: none !important; }
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 768px) {
       .hero {
@@ -974,11 +1009,15 @@
     <div class="nav-inner">
       <span class="nav-name"><span class="dot"></span>leonardo_bornhaeusser</span>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#services">Stack</a>
-        <a href="#experience">Experience</a>
-        <a href="#posts">Posts</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#services" data-i18n="nav.stack">Stack</a>
+        <a href="#experience" data-i18n="nav.experience">Experience</a>
+        <a href="#posts" data-i18n="nav.posts">Posts</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <button class="lang-switch" onclick="toggleLang()" aria-label="Switch language">
+          <span class="lang-flag" data-i18n-flag>🇩🇪</span>
+          <span data-i18n-lang-label>DE</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -986,11 +1025,11 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-text">
-      <div class="hero-label">Product & Technology Leadership</div>
+      <div class="hero-label" data-i18n="hero.label">Product & Technology Leadership</div>
       <h1>Leonardo<br><span class="gradient-text">Bornhaeusser</span></h1>
-      <p class="subtitle">I help companies build products, lead teams, and bridge the gap between technology and business impact.</p>
+      <p class="subtitle" data-i18n="hero.subtitle">I help companies build products, lead teams, and bridge the gap between technology and business impact.</p>
       <div class="hero-cta">
-        <a href="mailto:leonardo@creativate.tech" class="btn btn-gradient">Let's talk</a>
+        <a href="mailto:leonardo@creativate.tech" class="btn btn-gradient" data-i18n="hero.cta">Let's talk</a>
         <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
       </div>
     </div>
@@ -1002,10 +1041,9 @@
   <!-- About -->
   <div class="section-divider"></div>
   <section class="section" id="about">
-    <div class="section-label">About</div>
-    <h2 class="section-title">Background</h2>
-    <p class="about-text">I'm a product and business leader with deep technical roots. Over the past 11 years, I've founded ventures, designed products, and built teams at the intersection of technology, design, and strategy. My strength lies in translating complex technical possibilities into clear product decisions and business outcomes. Whether it's shaping product strategy, leading cross-functional teams, or architecting AI-powered solutions, I bring a hands-on understanding of technology paired with a relentless focus on what actually matters: the people using the product and the business building it.
-</p>
+    <div class="section-label" data-i18n="about.label">About</div>
+    <h2 class="section-title" data-i18n="about.title">Background</h2>
+    <p class="about-text" data-i18n="about.text">I'm a product and business leader with deep technical roots. Over the past 11 years, I've founded ventures, designed products, and built teams at the intersection of technology, design, and strategy. My strength lies in translating complex technical possibilities into clear product decisions and business outcomes. Whether it's shaping product strategy, leading cross-functional teams, or architecting AI-powered solutions, I bring a hands-on understanding of technology paired with a relentless focus on what actually matters: the people using the product and the business building it.</p>
 
     <!-- Skills Pills -->
     <div class="skills-section">
@@ -1051,27 +1089,27 @@
   <!-- What I Do -->
   <div class="section-divider"></div>
   <section class="section" id="services">
-    <div class="section-label">Services</div>
-    <h2 class="section-title">What I Do</h2>
-    <p class="section-subtitle">How I help companies build great products and scale effectively.</p>
+    <div class="section-label" data-i18n="services.label">Services</div>
+    <h2 class="section-title" data-i18n="services.title">What I Do</h2>
+    <p class="section-subtitle" data-i18n="services.subtitle">How I help companies build great products and scale effectively.</p>
     <div class="services-grid">
-      
+
       <div class="service-card">
         <div class="service-icon">🎯</div>
-        <h3>Product Strategy & Design</h3>
-        <p>From market research to UX strategy — shaping products that solve real problems. I bridge user needs with business goals through design thinking and data-driven decisions.</p>
+        <h3 data-i18n="services.product.title">Product Strategy & Design</h3>
+        <p data-i18n="services.product.desc">From market research to UX strategy — shaping products that solve real problems. I bridge user needs with business goals through design thinking and data-driven decisions.</p>
       </div>
-      
+
       <div class="service-card">
         <div class="service-icon">💻</div>
-        <h3>Technology & Engineering Leadership</h3>
-        <p>Building teams, choosing architectures, and shipping at the intersection of AI and product. I lead engineering with a product mindset and deliver with technical depth.</p>
+        <h3 data-i18n="services.tech.title">Technology & Engineering Leadership</h3>
+        <p data-i18n="services.tech.desc">Building teams, choosing architectures, and shipping at the intersection of AI and product. I lead engineering with a product mindset and deliver with technical depth.</p>
       </div>
-      
+
       <div class="service-card">
         <div class="service-icon">📈</div>
-        <h3>Business Development & Operations</h3>
-        <p>Scaling ventures, optimizing processes, and navigating governance. I turn strategic vision into operational reality with measurable business impact.</p>
+        <h3 data-i18n="services.business.title">Business Development & Operations</h3>
+        <p data-i18n="services.business.desc">Scaling ventures, optimizing processes, and navigating governance. I turn strategic vision into operational reality with measurable business impact.</p>
       </div>
       
     </div>
@@ -1080,31 +1118,24 @@
   <!-- Experience -->
   <div class="section-divider"></div>
   <section class="section" id="experience">
-    <div class="section-label">Career</div>
-    <h2 class="section-title">Experience</h2>
-    <p class="section-subtitle">Where I've built, led, and learned.</p>
+    <div class="section-label" data-i18n="exp.label">Career</div>
+    <h2 class="section-title" data-i18n="exp.title">Experience</h2>
+    <p class="section-subtitle" data-i18n="exp.subtitle">Where I've built, led, and learned.</p>
     <div class="timeline">
       
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>Founder / CTO</h3>
+          <h3 data-i18n="exp.creativate.role">Founder / CTO</h3>
           <div class="company">Creativate AIStudio</div>
-          <div class="period">Apr 2024 - Present // Berlin, Germany</div>
-          <p>Building Europe's layer of decision intelligence. Leading development of cNode,
-a modular AI system for explainable forecasting and scenario planning.
-EU AI Act compliance architecture. B2B deep-tech venture with co-founders
-Lisa Bennewitz (CFO) and Stella Manga Chesnay (Legal/GDPR).</p>
-          
+          <div class="period" data-i18n="exp.creativate.period">Apr 2024 - Present // Berlin, Germany</div>
+          <p data-i18n="exp.creativate.desc">Building Europe's layer of decision intelligence. Leading development of cNode, a modular AI system for explainable forecasting and scenario planning. EU AI Act compliance architecture. B2B deep-tech venture with co-founders Lisa Bennewitz (CFO) and Stella Manga Chesnay (Legal/GDPR).</p>
+
           <div class="highlight-tags">
-            
-            <span class="highlight-tag">Built explainable AI forecasting platform (cNode)</span>
-            
-            <span class="highlight-tag">EU AI Act compliance-by-design architecture</span>
-            
-            <span class="highlight-tag">Accepted into Futury Female Founders accelerator program</span>
-            
-            <span class="highlight-tag">Secured strategic angel investors via Tokenize.it</span>
+            <span class="highlight-tag" data-i18n="exp.creativate.h1">Built explainable AI forecasting platform (cNode)</span>
+            <span class="highlight-tag" data-i18n="exp.creativate.h2">EU AI Act compliance-by-design architecture</span>
+            <span class="highlight-tag" data-i18n="exp.creativate.h3">Accepted into Futury Female Founders accelerator program</span>
+            <span class="highlight-tag" data-i18n="exp.creativate.h4">Secured strategic angel investors via Tokenize.it</span>
             
           </div>
           
@@ -1114,19 +1145,15 @@ Lisa Bennewitz (CFO) and Stella Manga Chesnay (Legal/GDPR).</p>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>CEO & Founder</h3>
+          <h3 data-i18n="exp.b2h.role">CEO & Founder</h3>
           <div class="company">Born2Hold Ventures GmbH</div>
-          <div class="period">Dec 2022 - Present // Berlin, Germany</div>
-          <p>Venture holding and strategic advisory for early-stage startups.
-Focus on restructuring, corporate governance, and founder support.</p>
-          
+          <div class="period" data-i18n="exp.b2h.period">Dec 2022 - Present // Berlin, Germany</div>
+          <p data-i18n="exp.b2h.desc">Venture holding and strategic advisory for early-stage startups. Focus on restructuring, corporate governance, and founder support.</p>
+
           <div class="highlight-tags">
-            
-            <span class="highlight-tag">Startup venture portfolio management</span>
-            
-            <span class="highlight-tag">Corporate governance consulting</span>
-            
-            <span class="highlight-tag">Strategic restructuring advisory</span>
+            <span class="highlight-tag" data-i18n="exp.b2h.h1">Startup venture portfolio management</span>
+            <span class="highlight-tag" data-i18n="exp.b2h.h2">Corporate governance consulting</span>
+            <span class="highlight-tag" data-i18n="exp.b2h.h3">Strategic restructuring advisory</span>
             
           </div>
           
@@ -1138,17 +1165,13 @@ Focus on restructuring, corporate governance, and founder support.</p>
         <div class="timeline-content">
           <h3>COO & Co-Founder</h3>
           <div class="company">Camsol.io</div>
-          <div class="period">Nov 2022 - Apr 2025 // Berlin, Germany</div>
-          <p>B2B web development and digital solutions. Managed operations,
-product development, and client relationships.</p>
-          
+          <div class="period" data-i18n="exp.camsol.period">Nov 2022 - Apr 2025 // Berlin, Germany</div>
+          <p data-i18n="exp.camsol.desc">B2B web development and digital solutions. Managed operations, product development, and client relationships.</p>
+
           <div class="highlight-tags">
-            
-            <span class="highlight-tag">Scaled B2B web development operations</span>
-            
-            <span class="highlight-tag">Led product development and UX strategy</span>
-            
-            <span class="highlight-tag">Managed cross-functional development team</span>
+            <span class="highlight-tag" data-i18n="exp.camsol.h1">Scaled B2B web development operations</span>
+            <span class="highlight-tag" data-i18n="exp.camsol.h2">Led product development and UX strategy</span>
+            <span class="highlight-tag" data-i18n="exp.camsol.h3">Managed cross-functional development team</span>
             
           </div>
           
@@ -1158,19 +1181,15 @@ product development, and client relationships.</p>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>Trainee Business Development</h3>
+          <h3 data-i18n="exp.sparkasse.role">Trainee Business Development</h3>
           <div class="company">Sparkasse Vorpommern</div>
-          <div class="period">Apr 2021 - Oct 2022 // Mecklenburg-West Pomerania, Germany</div>
-          <p>Business development trainee focused on digital innovation
-and new business models in the banking sector.</p>
-          
+          <div class="period" data-i18n="exp.sparkasse.period">Apr 2021 - Oct 2022 // Mecklenburg-Vorpommern</div>
+          <p data-i18n="exp.sparkasse.desc">Business development trainee focused on digital innovation and new business models in the banking sector.</p>
+
           <div class="highlight-tags">
-            
-            <span class="highlight-tag">Contributed to Karla Plattform GmbH launch</span>
-            
-            <span class="highlight-tag">UX research and B2B strategy</span>
-            
-            <span class="highlight-tag">Digital transformation initiatives</span>
+            <span class="highlight-tag" data-i18n="exp.sparkasse.h1">Contributed to Karla Plattform GmbH launch</span>
+            <span class="highlight-tag" data-i18n="exp.sparkasse.h2">UX research and B2B strategy</span>
+            <span class="highlight-tag" data-i18n="exp.sparkasse.h3">Digital transformation initiatives</span>
             
           </div>
           
@@ -1180,19 +1199,15 @@ and new business models in the banking sector.</p>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>Product Designer</h3>
+          <h3 data-i18n="exp.karla.role">Product Designer</h3>
           <div class="company">Karla Plattform GmbH</div>
-          <div class="period">Apr 2021 - Oct 2022 // Greifswald, Germany</div>
-          <p>Product design and corporate identity for a digital platform venture
-within the Sparkasse ecosystem.</p>
-          
+          <div class="period" data-i18n="exp.karla.period">Apr 2021 - Oct 2022 // Greifswald</div>
+          <p data-i18n="exp.karla.desc">Product design and corporate identity for a digital platform venture within the Sparkasse ecosystem.</p>
+
           <div class="highlight-tags">
-            
-            <span class="highlight-tag">Corporate identity design</span>
-            
-            <span class="highlight-tag">Software development contribution</span>
-            
-            <span class="highlight-tag">Product-market fit research</span>
+            <span class="highlight-tag" data-i18n="exp.karla.h1">Corporate identity design</span>
+            <span class="highlight-tag" data-i18n="exp.karla.h2">Software development contribution</span>
+            <span class="highlight-tag" data-i18n="exp.karla.h3">Product-market fit research</span>
             
           </div>
           
@@ -1206,9 +1221,9 @@ within the Sparkasse ecosystem.</p>
   
   <div class="section-divider"></div>
   <section class="section">
-    <div class="section-label">Testimonials</div>
-    <h2 class="section-title">What Others Say</h2>
-    <p class="section-subtitle">Recommendations from colleagues and mentors.</p>
+    <div class="section-label" data-i18n="reco.label">Testimonials</div>
+    <h2 class="section-title" data-i18n="reco.title">What Others Say</h2>
+    <p class="section-subtitle" data-i18n="reco.subtitle">Recommendations from colleagues and mentors.</p>
     <div class="reco-grid">
       
       <div class="reco-card">
@@ -1231,9 +1246,9 @@ within the Sparkasse ecosystem.</p>
   
   <div class="section-divider"></div>
   <section class="section" id="posts">
-    <div class="section-label">Featured</div>
-    <h2 class="section-title">LinkedIn Posts</h2>
-    <p class="section-subtitle">Thoughts on product, technology, and building ventures.</p>
+    <div class="section-label" data-i18n="posts.label">Featured</div>
+    <h2 class="section-title" data-i18n="posts.title">LinkedIn Posts</h2>
+    <p class="section-subtitle" data-i18n="posts.subtitle">Thoughts on product, technology, and building ventures.</p>
     <div class="linkedin-grid">
       
       <a href="https://www.linkedin.com/feed/update/urn:li:activity:7419617084063502336/" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1256,7 +1271,7 @@ within the Sparkasse ecosystem.</p>
           <span class="linkedin-stat">&#128172; 596</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="posts.readon">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/leonardo-bornh%C3%A4u%C3%9Fer_germany-spends-billions-on-ideas-that-never-activity-7395019693574619136-vCPk" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1279,7 +1294,7 @@ within the Sparkasse ecosystem.</p>
           <span class="linkedin-stat">&#128172; 8</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="posts.readon">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/janseidemann_das-erste-female-founder-programm-von-activity-7394287918678241280-cYc5" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1302,7 +1317,7 @@ within the Sparkasse ecosystem.</p>
           <span class="linkedin-stat">&#128172; 16</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="posts.readon">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/landkreis-mittelsachsen_mut-kapital-wirkung-frauen-gestalten-ugcPost-7389619833786494976-hsDP" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1325,7 +1340,7 @@ within the Sparkasse ecosystem.</p>
           <span class="linkedin-stat">&#128172; 6</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="posts.readon">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/leonardo-bornh%C3%A4u%C3%9Fer_bootstrapping-deeptech-xletix-activity-7348995660454490114-dvav" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1348,7 +1363,7 @@ within the Sparkasse ecosystem.</p>
           <span class="linkedin-stat">&#128172; 7</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="posts.readon">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/activity-7262738115109302273-4SAF" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1366,7 +1381,7 @@ within the Sparkasse ecosystem.</p>
         </div>
         <div class="linkedin-card-body">From our recent activity — building at the intersection of explainable AI, tokenized fundraising, and European deep-tech. Follow along for updates on cNode, Creativate AI Studio, and the journey of turning research into real-world decision intelligence.</div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="posts.readon">Read on LinkedIn &rarr;</span>
       </a>
       
     </div>
@@ -1377,24 +1392,24 @@ within the Sparkasse ecosystem.</p>
   <div class="section-divider"></div>
   <section class="section" id="contact">
     <div class="contact-inner">
-      <h2><span class="gradient-text">Let's talk</span></h2>
-      <p>Open to conversations about product, technology, and building things that matter.</p>
+      <h2><span class="gradient-text" data-i18n="contact.title">Let's talk</span></h2>
+      <p data-i18n="contact.subtitle">Open to conversations about product, technology, and building things that matter.</p>
       <div class="contact-links">
-        <a href="mailto:leonardo@creativate.tech" class="contact-link">&#9993; Email</a>
-        <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="contact-link">&#128279; LinkedIn</a>
-        <a href="https://github.com/adminleo" target="_blank" rel="noopener" class="contact-link">&#128187; GitHub</a>
+        <a href="mailto:leonardo@creativate.tech" class="contact-link" data-i18n="contact.email">&#9993; Email</a>
+        <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="contact-link" data-i18n="contact.linkedin">&#128279; LinkedIn</a>
+        <a href="https://github.com/adminleo" target="_blank" rel="noopener" class="contact-link" data-i18n="contact.github">&#128187; GitHub</a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    &copy; 2026 Leonardo Bornhaeusser // built in berlin
+    <span data-i18n="footer">&copy; 2026 Leonardo Bornhaeusser // built in berlin</span>
   </footer>
 
   <!-- Floating PDF Download Button -->
   <button class="pdf-fab" onclick="window.print()" aria-label="Download as PDF">
-    <span class="tooltip">Save as PDF</span>
+    <span class="tooltip" data-i18n="pdf.tooltip">Save as PDF</span>
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
   </button>
 
@@ -1409,6 +1424,225 @@ within the Sparkasse ecosystem.</p>
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+    // ─── i18n: English / German ───
+    const i18n = {
+      en: {
+        "meta.title": "Leonardo Bornhaeusser \u2014 Product & Technology Leadership",
+        "meta.description": "I help companies build products, lead teams, and bridge the gap between technology and business impact.",
+        "nav.about": "About",
+        "nav.stack": "Stack",
+        "nav.experience": "Experience",
+        "nav.posts": "Posts",
+        "nav.contact": "Contact",
+        "hero.label": "Product & Technology Leadership",
+        "hero.subtitle": "I help companies build products, lead teams, and bridge the gap between technology and business impact.",
+        "hero.cta": "Let\u2019s talk",
+        "about.label": "About",
+        "about.title": "Background",
+        "about.text": "I\u2019m a product and business leader with deep technical roots. Over the past 11 years, I\u2019ve founded ventures, designed products, and built teams at the intersection of technology, design, and strategy. My strength lies in translating complex technical possibilities into clear product decisions and business outcomes. Whether it\u2019s shaping product strategy, leading cross-functional teams, or architecting AI-powered solutions, I bring a hands-on understanding of technology paired with a relentless focus on what actually matters: the people using the product and the business building it.",
+        "services.label": "Services",
+        "services.title": "What I Do",
+        "services.subtitle": "How I help companies build great products and scale effectively.",
+        "services.product.title": "Product Strategy & Design",
+        "services.product.desc": "From market research to UX strategy \u2014 shaping products that solve real problems. I bridge user needs with business goals through design thinking and data-driven decisions.",
+        "services.tech.title": "Technology & Engineering Leadership",
+        "services.tech.desc": "Building teams, choosing architectures, and shipping at the intersection of AI and product. I lead engineering with a product mindset and deliver with technical depth.",
+        "services.business.title": "Business Development & Operations",
+        "services.business.desc": "Scaling ventures, optimizing processes, and navigating governance. I turn strategic vision into operational reality with measurable business impact.",
+        "exp.label": "Career",
+        "exp.title": "Experience",
+        "exp.subtitle": "Where I\u2019ve built, led, and learned.",
+        "exp.creativate.role": "Founder / CTO",
+        "exp.creativate.period": "Apr 2024 - Present // Berlin, Germany",
+        "exp.creativate.desc": "Building Europe\u2019s layer of decision intelligence. Leading development of cNode, a modular AI system for explainable forecasting and scenario planning. EU AI Act compliance architecture. B2B deep-tech venture with co-founders Lisa Bennewitz (CFO) and Stella Manga Chesnay (Legal/GDPR).",
+        "exp.creativate.h1": "Built explainable AI forecasting platform (cNode)",
+        "exp.creativate.h2": "EU AI Act compliance-by-design architecture",
+        "exp.creativate.h3": "Accepted into Futury Female Founders accelerator program",
+        "exp.creativate.h4": "Secured strategic angel investors via Tokenize.it",
+        "exp.b2h.role": "CEO & Founder",
+        "exp.b2h.period": "Dec 2022 - Present // Berlin, Germany",
+        "exp.b2h.desc": "Venture holding and strategic advisory for early-stage startups. Focus on restructuring, corporate governance, and founder support.",
+        "exp.b2h.h1": "Startup venture portfolio management",
+        "exp.b2h.h2": "Corporate governance consulting",
+        "exp.b2h.h3": "Strategic restructuring advisory",
+        "exp.camsol.period": "Nov 2022 - Apr 2025 // Berlin, Germany",
+        "exp.camsol.desc": "B2B web development and digital solutions. Managed operations, product development, and client relationships.",
+        "exp.camsol.h1": "Scaled B2B web development operations",
+        "exp.camsol.h2": "Led product development and UX strategy",
+        "exp.camsol.h3": "Managed cross-functional development team",
+        "exp.sparkasse.role": "Trainee Business Development",
+        "exp.sparkasse.period": "Apr 2021 - Oct 2022 // Mecklenburg-West Pomerania, Germany",
+        "exp.sparkasse.desc": "Business development trainee focused on digital innovation and new business models in the banking sector.",
+        "exp.sparkasse.h1": "Contributed to Karla Plattform GmbH launch",
+        "exp.sparkasse.h2": "UX research and B2B strategy",
+        "exp.sparkasse.h3": "Digital transformation initiatives",
+        "exp.karla.role": "Product Designer",
+        "exp.karla.period": "Apr 2021 - Oct 2022 // Greifswald, Germany",
+        "exp.karla.desc": "Product design and corporate identity for a digital platform venture within the Sparkasse ecosystem.",
+        "exp.karla.h1": "Corporate identity design",
+        "exp.karla.h2": "Software development contribution",
+        "exp.karla.h3": "Product-market fit research",
+        "reco.label": "Testimonials",
+        "reco.title": "What Others Say",
+        "reco.subtitle": "Recommendations from colleagues and mentors.",
+        "posts.label": "Featured",
+        "posts.title": "LinkedIn Posts",
+        "posts.subtitle": "Thoughts on product, technology, and building ventures.",
+        "posts.readon": "Read on LinkedIn \u2192",
+        "contact.title": "Let\u2019s talk",
+        "contact.subtitle": "Open to conversations about product, technology, and building things that matter.",
+        "contact.email": "\u2709 Email",
+        "contact.linkedin": "\ud83d\udd17 LinkedIn",
+        "contact.github": "\ud83d\udcbb GitHub",
+        "footer": "\u00a9 2026 Leonardo Bornhaeusser // built in berlin",
+        "pdf.tooltip": "Save as PDF"
+      },
+      de: {
+        "meta.title": "Leonardo Bornhaeusser \u2014 Produkt- & Technologie-Leadership",
+        "meta.description": "Ich helfe Unternehmen, Produkte zu entwickeln, Teams zu f\u00fchren und die Br\u00fccke zwischen Technologie und Business Impact zu schlagen.",
+        "nav.about": "\u00dcber mich",
+        "nav.stack": "Stack",
+        "nav.experience": "Erfahrung",
+        "nav.posts": "Beitr\u00e4ge",
+        "nav.contact": "Kontakt",
+        "hero.label": "Produkt- & Technologie-Leadership",
+        "hero.subtitle": "Ich helfe Unternehmen, Produkte zu entwickeln, Teams zu f\u00fchren und die Br\u00fccke zwischen Technologie und Business Impact zu schlagen.",
+        "hero.cta": "Kontakt aufnehmen",
+        "about.label": "\u00dcber mich",
+        "about.title": "Hintergrund",
+        "about.text": "Ich bin Produkt- und Business-Leader mit tiefen technischen Wurzeln. In den letzten 11 Jahren habe ich Unternehmen gegr\u00fcndet, Produkte gestaltet und Teams an der Schnittstelle von Technologie, Design und Strategie aufgebaut. Meine St\u00e4rke liegt darin, komplexe technische M\u00f6glichkeiten in klare Produktentscheidungen und messbare Gesch\u00e4ftsergebnisse zu \u00fcbersetzen. Ob Produktstrategie, die F\u00fchrung crossfunktionaler Teams oder die Architektur KI-gest\u00fctzter L\u00f6sungen \u2014 ich bringe ein tiefes Technologieverst\u00e4ndnis mit einem kompromisslosen Fokus auf das Wesentliche zusammen: die Menschen, die das Produkt nutzen, und das Unternehmen, das es baut.",
+        "services.label": "Leistungen",
+        "services.title": "Was ich mache",
+        "services.subtitle": "Wie ich Unternehmen helfe, gro\u00dfartige Produkte zu bauen und effektiv zu skalieren.",
+        "services.product.title": "Produktstrategie & Design",
+        "services.product.desc": "Von Marktforschung bis UX-Strategie \u2014 Produkte gestalten, die echte Probleme l\u00f6sen. Ich verbinde Nutzerbed\u00fcrfnisse mit Gesch\u00e4ftszielen durch Design Thinking und datengetriebene Entscheidungen.",
+        "services.tech.title": "Technologie- & Engineering-Leadership",
+        "services.tech.desc": "Teams aufbauen, Architekturen w\u00e4hlen und an der Schnittstelle von KI und Produkt liefern. Ich f\u00fchre Engineering mit Produktdenken und liefere mit technischer Tiefe.",
+        "services.business.title": "Business Development & Operations",
+        "services.business.desc": "Ventures skalieren, Prozesse optimieren und Governance navigieren. Ich \u00fcbersetze strategische Vision in operative Realit\u00e4t mit messbarem Business Impact.",
+        "exp.label": "Karriere",
+        "exp.title": "Erfahrung",
+        "exp.subtitle": "Wo ich gebaut, gef\u00fchrt und gelernt habe.",
+        "exp.creativate.role": "Gr\u00fcnder / CTO",
+        "exp.creativate.period": "Apr 2024 - heute // Berlin",
+        "exp.creativate.desc": "Aufbau von Europas Decision-Intelligence-Schicht. Leitung der Entwicklung von cNode \u2014 einem modularen KI-System f\u00fcr erkl\u00e4rbare Prognosen und Szenarioplanung. EU-AI-Act-konforme Architektur. B2B-Deep-Tech-Venture mit den Mitgr\u00fcnderinnen Lisa Bennewitz (CFO) und Stella Manga Chesnay (Legal/DSGVO).",
+        "exp.creativate.h1": "Erkl\u00e4rbare KI-Prognoseplattform gebaut (cNode)",
+        "exp.creativate.h2": "EU-AI-Act-Compliance-by-Design-Architektur",
+        "exp.creativate.h3": "Aufnahme ins Futury Female Founders Accelerator-Programm",
+        "exp.creativate.h4": "Strategische Angel-Investoren \u00fcber Tokenize.it gewonnen",
+        "exp.b2h.role": "CEO & Gr\u00fcnder",
+        "exp.b2h.period": "Dez 2022 - heute // Berlin",
+        "exp.b2h.desc": "Venture-Holding und strategische Beratung f\u00fcr Startups in der Fr\u00fchphase. Fokus auf Restrukturierung, Corporate Governance und Gr\u00fcnder-Support.",
+        "exp.b2h.h1": "Startup-Venture-Portfoliomanagement",
+        "exp.b2h.h2": "Corporate-Governance-Beratung",
+        "exp.b2h.h3": "Strategische Restrukturierungsberatung",
+        "exp.camsol.period": "Nov 2022 - Apr 2025 // Berlin",
+        "exp.camsol.desc": "B2B-Webentwicklung und digitale L\u00f6sungen. Verantwortung f\u00fcr Operations, Produktentwicklung und Kundenbeziehungen.",
+        "exp.camsol.h1": "B2B-Webentwicklung-Operations skaliert",
+        "exp.camsol.h2": "Produktentwicklung und UX-Strategie geleitet",
+        "exp.camsol.h3": "Crossfunktionales Entwicklungsteam gef\u00fchrt",
+        "exp.sparkasse.role": "Trainee Business Development",
+        "exp.sparkasse.period": "Apr 2021 - Okt 2022 // Mecklenburg-Vorpommern",
+        "exp.sparkasse.desc": "Business-Development-Trainee mit Fokus auf digitale Innovation und neue Gesch\u00e4ftsmodelle im Bankensektor.",
+        "exp.sparkasse.h1": "Beitrag zum Launch der Karla Plattform GmbH",
+        "exp.sparkasse.h2": "UX-Research und B2B-Strategie",
+        "exp.sparkasse.h3": "Initiativen zur digitalen Transformation",
+        "exp.karla.role": "Product Designer",
+        "exp.karla.period": "Apr 2021 - Okt 2022 // Greifswald",
+        "exp.karla.desc": "Produktdesign und Corporate Identity f\u00fcr ein digitales Plattform-Venture innerhalb des Sparkassen-\u00d6kosystems.",
+        "exp.karla.h1": "Corporate-Identity-Design",
+        "exp.karla.h2": "Beitrag zur Softwareentwicklung",
+        "exp.karla.h3": "Product-Market-Fit-Research",
+        "reco.label": "Empfehlungen",
+        "reco.title": "Was andere sagen",
+        "reco.subtitle": "Empfehlungen von Kollegen und Mentoren.",
+        "posts.label": "Ausgew\u00e4hlt",
+        "posts.title": "LinkedIn-Beitr\u00e4ge",
+        "posts.subtitle": "Gedanken zu Produkt, Technologie und dem Aufbau von Ventures.",
+        "posts.readon": "Auf LinkedIn lesen \u2192",
+        "contact.title": "Lass uns sprechen",
+        "contact.subtitle": "Offen f\u00fcr Gespr\u00e4che \u00fcber Produkt, Technologie und den Aufbau von Dingen, die z\u00e4hlen.",
+        "contact.email": "\u2709 E-Mail",
+        "contact.linkedin": "\ud83d\udd17 LinkedIn",
+        "contact.github": "\ud83d\udcbb GitHub",
+        "footer": "\u00a9 2026 Leonardo Bornhaeusser // gebaut in Berlin",
+        "pdf.tooltip": "Als PDF speichern"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      const t = i18n[lang];
+
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+      });
+
+      // Update HTML lang attribute
+      document.documentElement.lang = lang;
+
+      // Update page title
+      document.title = t['meta.title'];
+
+      // Update meta description
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', t['meta.description']);
+
+      // Update lang switch button to show the OTHER language
+      const flagEl = document.querySelector('[data-i18n-flag]');
+      const labelEl = document.querySelector('[data-i18n-lang-label]');
+      if (lang === 'de') {
+        flagEl.textContent = '\ud83c\uddec\ud83c\udde7';
+        labelEl.textContent = 'EN';
+      } else {
+        flagEl.textContent = '\ud83c\udde9\ud83c\uddea';
+        labelEl.textContent = 'DE';
+      }
+
+      // Persist preference
+      try { localStorage.setItem('lang', lang); } catch(e) {}
+
+      // Update URL without reload
+      const url = new URL(window.location);
+      if (lang === 'en') {
+        url.searchParams.delete('lang');
+      } else {
+        url.searchParams.set('lang', lang);
+      }
+      history.replaceState(null, '', url);
+    }
+
+    function toggleLang() {
+      applyLang(currentLang === 'en' ? 'de' : 'en');
+    }
+
+    // Determine initial language: URL param > localStorage > browser preference
+    (function initLang() {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (urlLang === 'de' || urlLang === 'en') {
+        applyLang(urlLang);
+        return;
+      }
+      try {
+        const stored = localStorage.getItem('lang');
+        if (stored === 'de' || stored === 'en') {
+          applyLang(stored);
+          return;
+        }
+      } catch(e) {}
+      // Check browser language
+      const browserLang = (navigator.language || '').substring(0, 2);
+      if (browserLang === 'de') {
+        applyLang('de');
+      }
+      // Default: English (already rendered)
+    })();
   </script>
 
 </body>
