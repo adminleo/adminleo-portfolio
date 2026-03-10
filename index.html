@@ -5,21 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leonardo Bornhaeusser — Product & Technology Leadership</title>
   <meta name="description" content="I help companies build products, lead teams, and bridge the gap between technology and business impact.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --text: #1a1a1a;
-      --text-secondary: #555;
-      --text-light: #888;
-      --bg: #ffffff;
-      --bg-alt: #f7f7f8;
-      --accent: #4f46e5;
-      --accent-light: #6366f1;
-      --border: #e5e5e5;
-      --card-bg: #ffffff;
-      --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
-      --max-width: 960px;
+      --bg: #0a0a0f;
+      --bg-elevated: #12121a;
+      --bg-card: rgba(255,255,255,0.04);
+      --bg-card-hover: rgba(255,255,255,0.08);
+      --text: #f5f5fa;
+      --text-secondary: #c8c8d8;
+      --text-dim: #8a8a9f;
+      --accent: #7c3aed;
+      --accent-2: #22d3ee;
+      --accent-3: #a78bfa;
+      --gradient: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+      --gradient-subtle: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(6,182,212,0.15) 100%);
+      --border: rgba(255,255,255,0.08);
+      --border-accent: rgba(124,58,237,0.4);
+      --glow: 0 0 60px rgba(124,58,237,0.2);
+      --max-width: 1080px;
+      --mono: 'JetBrains Mono', monospace;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -28,19 +33,69 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-light); }
+    a { color: var(--accent-2); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #67e8f9; }
+
+    /* ─── Animated grid background with energy pulse ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 50%, rgba(124,58,237,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 350px at 80% 30%, rgba(6,182,212,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: ambientDrift 12s ease-in-out infinite alternate;
+    }
+    @keyframes gridPulse {
+      0%, 100% {
+        background-image:
+          linear-gradient(rgba(124,58,237,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(124,58,237,0.03) 1px, transparent 1px);
+      }
+      50% {
+        background-image:
+          linear-gradient(rgba(6,182,212,0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(6,182,212,0.06) 1px, transparent 1px);
+      }
+    }
+    @keyframes ambientDrift {
+      0% {
+        background:
+          radial-gradient(ellipse 600px 400px at 20% 50%, rgba(124,58,237,0.06) 0%, transparent 70%),
+          radial-gradient(ellipse 500px 350px at 80% 30%, rgba(6,182,212,0.04) 0%, transparent 70%);
+      }
+      100% {
+        background:
+          radial-gradient(ellipse 600px 400px at 30% 60%, rgba(6,182,212,0.06) 0%, transparent 70%),
+          radial-gradient(ellipse 500px 350px at 70% 40%, rgba(124,58,237,0.05) 0%, transparent 70%);
+      }
+    }
 
     /* ─── Navigation ─── */
     .nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      padding: 0.75rem 2rem;
+      padding: 0.8rem 2rem;
     }
     .nav-inner {
       max-width: var(--max-width);
@@ -50,115 +105,207 @@
       align-items: center;
     }
     .nav-name {
-      font-weight: 700;
-      font-size: 1rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 0.9rem;
       color: var(--text);
+      letter-spacing: -0.02em;
     }
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-name .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-2);
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
     .nav-links a {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
       font-weight: 500;
-      transition: color 0.15s;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links .btn-nav {
-      background: var(--accent);
-      color: white;
-      padding: 0.4rem 1rem;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      transition: background 0.15s;
-    }
-    .nav-links .btn-nav:hover { background: var(--accent-light); color: white; }
+    .nav-links a:hover { color: #fff; }
 
     /* ─── Hero ─── */
     .hero {
+      position: relative;
+      z-index: 1;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 5rem 2rem 4rem;
+      padding: 6rem 2rem 5rem;
       display: flex;
       align-items: center;
-      gap: 3rem;
+      gap: 4rem;
     }
     .hero-text { flex: 1; }
-    .hero-text h1 {
-      font-size: 2.75rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-2);
       margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent-2);
+    }
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.25rem;
+    }
+    .hero-text h1 .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero-text .subtitle {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.7;
       max-width: 520px;
     }
     .hero-cta {
       display: inline-flex;
       gap: 0.75rem;
-      margin-top: 1.75rem;
+      margin-top: 2rem;
     }
-    .hero-cta .btn {
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.65rem 1.5rem;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
       border-radius: 8px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
       border: none;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.2s;
       text-decoration: none;
+      font-family: inherit;
     }
-    .btn-filled { background: var(--accent); color: white; }
-    .btn-filled:hover { background: var(--accent-light); color: white; }
-    .btn-ghost {
+    .btn-gradient {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+    }
+    .btn-gradient:hover {
+      box-shadow: 0 4px 30px rgba(124,58,237,0.5);
+      transform: translateY(-1px);
+      color: white;
+    }
+    .btn-outline {
       background: transparent;
       color: var(--text-secondary);
       border: 1px solid var(--border);
     }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-    .hero-image {
-      flex-shrink: 0;
+    .btn-outline:hover {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+    }
+    .hero-image { flex-shrink: 0; position: relative; }
+    /* Outer glow aura */
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #7c3aed, #06b6d4, #8b5cf6, #22d3ee, #7c3aed);
+      opacity: 0.3;
+      filter: blur(35px);
+      animation: glowRotate 6s linear infinite;
+    }
+    /* Spinning gradient ring */
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #7c3aed, #06b6d4, #8b5cf6, #22d3ee, #7c3aed);
+      animation: glowRotate 4s linear infinite;
+      z-index: 0;
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    }
+    @keyframes glowRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     .hero-image img {
-      width: 220px;
-      height: 220px;
+      position: relative;
+      z-index: 1;
+      width: 260px;
+      height: 260px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid var(--bg-alt);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 50px rgba(124,58,237,0.25), 0 0 100px rgba(6,182,212,0.1);
     }
 
-    /* ─── Section base ─── */
+    /* ─── Sections ─── */
     .section {
+      position: relative;
+      z-index: 1;
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 4rem 2rem;
+      padding: 5rem 2rem;
     }
-    .section-alt { background: var(--bg-alt); }
-    .section-alt .section { padding: 4rem 2rem; }
+    .section-divider {
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-2);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-label::before {
+      content: '//';
+      color: var(--text-dim);
+    }
     .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
       margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
     }
     .section-subtitle {
       color: var(--text-secondary);
       font-size: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      max-width: 500px;
     }
 
     /* ─── About ─── */
     .about-text {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
-      line-height: 1.8;
+      line-height: 1.85;
       max-width: 680px;
     }
 
@@ -166,59 +313,78 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
     .service-card {
-      background: var(--card-bg);
+      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 2rem 1.5rem;
-      transition: box-shadow 0.2s, transform 0.2s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     .service-card:hover {
-      box-shadow: var(--card-shadow-hover);
-      transform: translateY(-2px);
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--glow);
     }
+    .service-card:hover::before { opacity: 1; }
     .service-icon {
       width: 48px;
       height: 48px;
-      background: rgba(79,70,229,0.08);
+      background: var(--gradient-subtle);
+      border: 1px solid rgba(124,58,237,0.15);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-bottom: 1.25rem;
     }
     .service-card h3 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
     .service-card p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     /* ─── Experience ─── */
     .timeline { position: relative; }
     .timeline-item {
       display: flex;
-      gap: 1.5rem;
-      padding-bottom: 2.5rem;
+      gap: 1.75rem;
+      padding-bottom: 2.75rem;
       position: relative;
     }
     .timeline-item:last-child { padding-bottom: 0; }
     .timeline-dot {
       flex-shrink: 0;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       background: var(--accent);
       border-radius: 50%;
-      margin-top: 6px;
+      margin-top: 7px;
       position: relative;
       z-index: 1;
+      box-shadow: 0 0 12px rgba(124,58,237,0.4);
     }
     .timeline-item:not(:last-child) .timeline-dot::after {
       content: '';
@@ -226,115 +392,455 @@
       left: 50%;
       top: 100%;
       transform: translateX(-50%);
-      width: 2px;
-      height: calc(100% + 2rem);
-      background: var(--border);
+      width: 1px;
+      height: calc(100% + 2.25rem);
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      opacity: 0.3;
     }
     .timeline-content h3 {
       font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 0.15rem;
     }
     .timeline-content .company {
-      font-size: 0.95rem;
-      color: var(--accent);
+      font-size: 0.9rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       font-weight: 600;
     }
     .timeline-content .period {
-      font-size: 0.8rem;
-      color: var(--text-light);
-      margin-top: 0.15rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-top: 0.2rem;
       margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
     }
     .timeline-content p {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.65;
     }
     .highlight-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-top: 0.6rem;
+      margin-top: 0.7rem;
     }
     .highlight-tag {
-      background: rgba(79,70,229,0.06);
-      color: var(--accent);
+      background: var(--gradient-subtle);
+      border: 1px solid rgba(124,58,237,0.18);
+      color: var(--accent-3);
       padding: 0.2rem 0.6rem;
       border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .highlight-tag:hover {
+      border-color: rgba(124,58,237,0.4);
+      box-shadow: 0 0 10px rgba(124,58,237,0.15);
+    }
+
+    /* ─── Skills ─── */
+    .skills-section { margin-top: 3rem; }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .skill-pill:hover {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+    }
+    .skill-pill.tech {
+      border-color: rgba(124,58,237,0.2);
+      color: var(--accent-3);
     }
 
     /* ─── Recommendations ─── */
     .reco-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
     .reco-card {
-      background: var(--card-bg);
+      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 1.75rem;
+      transition: all 0.2s;
+    }
+    .reco-card:hover {
+      border-color: rgba(6,182,212,0.2);
+      background: var(--bg-card-hover);
     }
     .reco-card blockquote {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
-      line-height: 1.6;
+      line-height: 1.7;
       font-style: italic;
       margin-bottom: 1rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
     }
-    .reco-author { font-size: 0.85rem; font-weight: 600; }
-    .reco-role { font-size: 0.8rem; color: var(--text-light); }
+    .reco-author { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .reco-role { font-size: 0.75rem; color: var(--text-secondary); font-family: var(--mono); }
 
     /* ─── Contact ─── */
     .contact-inner {
       text-align: center;
-      max-width: 500px;
+      max-width: 550px;
       margin: 0 auto;
     }
     .contact-inner h2 {
-      font-size: 2rem;
-      font-weight: 800;
+      font-size: 2.5rem;
+      font-weight: 900;
       margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
+    }
+    .contact-inner h2 .gradient-text {
+      background: linear-gradient(90deg, #7c3aed, #06b6d4, #8b5cf6, #22d3ee, #7c3aed);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .contact-inner p {
       color: var(--text-secondary);
       font-size: 1rem;
       margin-bottom: 2rem;
+      line-height: 1.7;
     }
     .contact-links {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
     }
     .contact-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
       padding: 0.6rem 1.25rem;
+      background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.9rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-secondary);
-      transition: all 0.15s;
+      transition: all 0.2s;
     }
     .contact-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+      background: rgba(6,182,212,0.05);
     }
 
     /* ─── Footer ─── */
     .footer {
+      position: relative;
+      z-index: 1;
       border-top: 1px solid var(--border);
       padding: 2rem;
       text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-family: var(--mono);
+    }
+
+    /* ─── Timeline dot pulse ─── */
+    .timeline-dot {
+      animation: dotPulse 3s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { box-shadow: 0 0 12px rgba(124,58,237,0.4); }
+      50% { box-shadow: 0 0 20px rgba(124,58,237,0.7), 0 0 40px rgba(124,58,237,0.2); }
+    }
+
+    /* ─── Section fade-in on scroll ─── */
+    .section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Hero always visible */
+    .hero {
+      animation: fadeInUp 1s ease-out both;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Service card shimmer on hover ─── */
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(124,58,237,0.05), transparent, rgba(6,182,212,0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+      animation: cardShimmer 6s linear infinite;
+    }
+    .service-card:hover::after { opacity: 1; }
+    @keyframes cardShimmer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ─── Skill pill glow on hover ─── */
+    .skill-pill:hover {
+      box-shadow: 0 0 15px rgba(6,182,212,0.2);
+    }
+    .skill-pill.tech:hover {
+      box-shadow: 0 0 15px rgba(124,58,237,0.3);
+    }
+
+    /* ─── Nav dot energy pulse ─── */
+    .nav-name .dot {
+      box-shadow: 0 0 8px rgba(34,211,238,0.5);
+    }
+
+    /* ─── Contact gradient text shimmer ─── */
+    .contact-inner h2 .gradient-text {
+      background-size: 200% auto;
+      animation: gradientShift 4s linear infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ─── Floating PDF Download Bubble ─── */
+    .pdf-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: var(--gradient);
+      color: white;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.4), 0 0 40px rgba(124,58,237,0.15);
+      transition: all 0.3s ease;
+      animation: fabPulse 3s ease-in-out infinite;
+    }
+    .pdf-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(124,58,237,0.6), 0 0 60px rgba(6,182,212,0.2);
+    }
+    .pdf-fab::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #7c3aed, #06b6d4, #8b5cf6, #22d3ee, #7c3aed);
+      z-index: -1;
+      animation: glowRotate 4s linear infinite;
+      opacity: 0.4;
+      filter: blur(8px);
+    }
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(124,58,237,0.4), 0 0 40px rgba(124,58,237,0.15); }
+      50% { box-shadow: 0 4px 25px rgba(124,58,237,0.5), 0 0 50px rgba(6,182,212,0.2); }
+    }
+    .pdf-fab .tooltip {
+      position: absolute;
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg-elevated);
+      color: var(--text);
       font-size: 0.8rem;
-      color: var(--text-light);
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      font-family: var(--mono);
+    }
+    .pdf-fab:hover .tooltip { opacity: 1; }
+
+    /* ─── Print / PDF Light Theme ─── */
+    @media print {
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        background: #fff !important;
+        color: #1a1a1a !important;
+        font-size: 11pt !important;
+        line-height: 1.5 !important;
+      }
+      body::before, body::after { display: none !important; }
+      .nav, .pdf-fab { display: none !important; }
+      .section-divider { border-color: #e5e5e5 !important; }
+      a { color: #4f46e5 !important; }
+      .hero {
+        padding: 1.5rem 0 1rem !important;
+        gap: 2rem !important;
+        animation: none !important;
+      }
+      .hero-label {
+        color: #6366f1 !important;
+      }
+      .hero-label::before {
+        background: #6366f1 !important;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem !important;
+        color: #1a1a1a !important;
+      }
+      .hero-text h1 .gradient-text {
+        background: none !important;
+        -webkit-text-fill-color: #4f46e5 !important;
+        color: #4f46e5 !important;
+      }
+      .hero-text .subtitle {
+        color: #555 !important;
+      }
+      .hero-image::before, .hero-image::after { display: none !important; }
+      .hero-image img {
+        width: 140px !important;
+        height: 140px !important;
+        border: 2px solid #ddd !important;
+        box-shadow: none !important;
+      }
+      .section {
+        padding: 1.5rem 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .section-label {
+        color: #6366f1 !important;
+      }
+      .section-label::before { color: #999 !important; }
+      .section-title {
+        font-size: 1.3rem !important;
+        color: #1a1a1a !important;
+      }
+      .section-subtitle {
+        color: #666 !important;
+      }
+      .about-text {
+        color: #444 !important;
+        font-size: 0.95rem !important;
+      }
+      .service-card {
+        background: #f8f8fa !important;
+        border-color: #e5e5e5 !important;
+        break-inside: avoid;
+        box-shadow: none !important;
+      }
+      .service-card::before, .service-card::after { display: none !important; }
+      .service-card h3 { color: #1a1a1a !important; }
+      .service-card p { color: #555 !important; }
+      .service-icon {
+        background: #eee !important;
+        border-color: #ddd !important;
+      }
+      .skill-pill {
+        background: #f0f0f5 !important;
+        border-color: #ddd !important;
+        color: #444 !important;
+      }
+      .skill-pill.tech {
+        border-color: #c4b5fd !important;
+        color: #6d28d9 !important;
+      }
+      .timeline-dot {
+        background: #6366f1 !important;
+        box-shadow: none !important;
+        animation: none !important;
+      }
+      .timeline-dot::after {
+        background: #ddd !important;
+        opacity: 1 !important;
+      }
+      .timeline-content h3 { color: #1a1a1a !important; }
+      .timeline-content .company {
+        background: none !important;
+        -webkit-text-fill-color: #4f46e5 !important;
+        color: #4f46e5 !important;
+      }
+      .timeline-content .period { color: #888 !important; }
+      .timeline-content p { color: #444 !important; }
+      .highlight-tag {
+        background: #f0edf8 !important;
+        border-color: #d4c8f0 !important;
+        color: #6d28d9 !important;
+      }
+      .reco-card {
+        background: #f8f8fa !important;
+        border-color: #e5e5e5 !important;
+        break-inside: avoid;
+      }
+      .reco-card blockquote {
+        color: #444 !important;
+        border-left-color: #6366f1 !important;
+      }
+      .reco-author { color: #1a1a1a !important; }
+      .reco-role { color: #666 !important; }
+      .contact-inner h2 .gradient-text {
+        background: none !important;
+        -webkit-text-fill-color: #4f46e5 !important;
+        color: #4f46e5 !important;
+        animation: none !important;
+      }
+      .contact-inner p { color: #555 !important; }
+      .contact-link {
+        background: #f0f0f5 !important;
+        border-color: #ddd !important;
+        color: #444 !important;
+      }
+      .footer {
+        color: #999 !important;
+        border-color: #e5e5e5 !important;
+      }
+      .btn-gradient {
+        background: #4f46e5 !important;
+        box-shadow: none !important;
+      }
+      .btn-outline {
+        border-color: #ccc !important;
+        color: #444 !important;
+      }
+      .hero-cta { display: none !important; }
+      @page {
+        margin: 1.5cm;
+        size: A4;
+      }
     }
 
     /* ─── Responsive ─── */
@@ -342,18 +848,21 @@
       .hero {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 3rem 1.5rem 2.5rem;
-        gap: 2rem;
+        padding: 3.5rem 1.5rem 3rem;
+        gap: 2.5rem;
       }
-      .hero-text h1 { font-size: 2rem; }
+      .hero-label { justify-content: center; }
+      .hero-text h1 { font-size: 2.25rem; }
       .hero-text .subtitle { max-width: 100%; }
       .hero-cta { justify-content: center; }
-      .hero-image img { width: 160px; height: 160px; }
+      .hero-image img { width: 180px; height: 180px; }
       .services-grid { grid-template-columns: 1fr; }
       .reco-grid { grid-template-columns: 1fr; }
-      .section { padding: 3rem 1.5rem; }
+      .section { padding: 3.5rem 1.5rem; }
       .nav { padding: 0.75rem 1rem; }
-      .nav-links { gap: 0.75rem; }
+      .nav-links { gap: 1rem; }
+      .section-title { font-size: 1.5rem; }
+      .contact-inner h2 { font-size: 1.75rem; }
     }
   </style>
 </head>
@@ -362,10 +871,10 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
-      <span class="nav-name">Leonardo Bornhaeusser</span>
+      <span class="nav-name"><span class="dot"></span>leonardo_bornhaeusser</span>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#services">What I Do</a>
+        <a href="#services">Stack</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </div>
@@ -375,11 +884,12 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-text">
-      <h1>Leonardo Bornhaeusser</h1>
+      <div class="hero-label">Product & Technology Leadership</div>
+      <h1>Leonardo<br><span class="gradient-text">Bornhaeusser</span></h1>
       <p class="subtitle">I help companies build products, lead teams, and bridge the gap between technology and business impact.</p>
       <div class="hero-cta">
-        <a href="mailto:leonardo@creativate.tech" class="btn btn-filled">Let's talk</a>
-        <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        <a href="mailto:leonardo@creativate.tech" class="btn btn-gradient">Let's talk</a>
+        <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
       </div>
     </div>
     <div class="hero-image">
@@ -388,16 +898,58 @@
   </section>
 
   <!-- About -->
-  <div class="section-alt">
-    <section class="section" id="about">
-      <h2 class="section-title">About</h2>
-      <p class="about-text">I'm a product and business leader with deep technical roots. Over the past 11 years, I've founded ventures, designed products, and built teams at the intersection of technology, design, and strategy. My strength lies in translating complex technical possibilities into clear product decisions and business outcomes. Whether it's shaping product strategy, leading cross-functional teams, or architecting AI-powered solutions, I bring a hands-on understanding of technology paired with a relentless focus on what actually matters: the people using the product and the business building it.
+  <div class="section-divider"></div>
+  <section class="section" id="about">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Background</h2>
+    <p class="about-text">I'm a product and business leader with deep technical roots. Over the past 11 years, I've founded ventures, designed products, and built teams at the intersection of technology, design, and strategy. My strength lies in translating complex technical possibilities into clear product decisions and business outcomes. Whether it's shaping product strategy, leading cross-functional teams, or architecting AI-powered solutions, I bring a hands-on understanding of technology paired with a relentless focus on what actually matters: the people using the product and the business building it.
 </p>
-    </section>
-  </div>
+
+    <!-- Skills Pills -->
+    <div class="skills-section">
+      <div class="skills-grid">
+        
+        <span class="skill-pill tech">Python / FastAPI</span>
+        
+        <span class="skill-pill tech">TypeScript / Next.js</span>
+        
+        <span class="skill-pill tech">AI/ML Systems</span>
+        
+        <span class="skill-pill tech">Explainable AI</span>
+        
+        <span class="skill-pill tech">Data Engineering</span>
+        
+        <span class="skill-pill tech">PostgreSQL / Redis</span>
+        
+        <span class="skill-pill tech">Docker / DevOps</span>
+        
+        <span class="skill-pill tech">EU AI Act Compliance</span>
+        
+        
+        <span class="skill-pill">Business Development</span>
+        
+        <span class="skill-pill">Product Strategy</span>
+        
+        <span class="skill-pill">Startup Leadership</span>
+        
+        <span class="skill-pill">Corporate Governance</span>
+        
+        <span class="skill-pill">Investor Relations</span>
+        
+        <span class="skill-pill">UX Research</span>
+        
+        <span class="skill-pill">Tokenization / Web3</span>
+        
+        <span class="skill-pill">Public Speaking</span>
+        
+      </div>
+    </div>
+  </section>
 
   <!-- What I Do -->
+  <div class="section-divider"></div>
   <section class="section" id="services">
+    <div class="section-label">Services</div>
     <h2 class="section-title">What I Do</h2>
     <p class="section-subtitle">How I help companies build great products and scale effectively.</p>
     <div class="services-grid">
@@ -424,133 +976,135 @@
   </section>
 
   <!-- Experience -->
-  <div class="section-alt">
-    <section class="section" id="experience">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle">Where I've built, led, and learned.</p>
-      <div class="timeline">
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Founder / CTO</h3>
-            <div class="company">Creativate AIStudio</div>
-            <div class="period">Apr 2024 - Present &middot; Berlin, Germany</div>
-            <p>Building Europe's layer of decision intelligence. Leading development of cNode,
+  <div class="section-divider"></div>
+  <section class="section" id="experience">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-subtitle">Where I've built, led, and learned.</p>
+    <div class="timeline">
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Founder / CTO</h3>
+          <div class="company">Creativate AIStudio</div>
+          <div class="period">Apr 2024 - Present // Berlin, Germany</div>
+          <p>Building Europe's layer of decision intelligence. Leading development of cNode,
 a modular AI system for explainable forecasting and scenario planning.
 EU AI Act compliance architecture. B2B deep-tech venture with co-founders
 Lisa Bennewitz (CFO) and Stella Manga Chesnay (Legal/GDPR).</p>
+          
+          <div class="highlight-tags">
             
-            <div class="highlight-tags">
-              
-              <span class="highlight-tag">Built explainable AI forecasting platform (cNode)</span>
-              
-              <span class="highlight-tag">EU AI Act compliance-by-design architecture</span>
-              
-              <span class="highlight-tag">Accepted into Futury Female Founders accelerator program</span>
-              
-              <span class="highlight-tag">Secured strategic angel investors via Tokenize.it</span>
-              
-            </div>
+            <span class="highlight-tag">Built explainable AI forecasting platform (cNode)</span>
+            
+            <span class="highlight-tag">EU AI Act compliance-by-design architecture</span>
+            
+            <span class="highlight-tag">Accepted into Futury Female Founders accelerator program</span>
+            
+            <span class="highlight-tag">Secured strategic angel investors via Tokenize.it</span>
             
           </div>
+          
         </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>CEO & Founder</h3>
-            <div class="company">Born2Hold Ventures GmbH</div>
-            <div class="period">Dec 2022 - Present &middot; Berlin, Germany</div>
-            <p>Venture holding and strategic advisory for early-stage startups.
-Focus on restructuring, corporate governance, and founder support.</p>
-            
-            <div class="highlight-tags">
-              
-              <span class="highlight-tag">Startup venture portfolio management</span>
-              
-              <span class="highlight-tag">Corporate governance consulting</span>
-              
-              <span class="highlight-tag">Strategic restructuring advisory</span>
-              
-            </div>
-            
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>COO & Co-Founder</h3>
-            <div class="company">Camsol.io</div>
-            <div class="period">Nov 2022 - Apr 2025 &middot; Berlin, Germany</div>
-            <p>B2B web development and digital solutions. Managed operations,
-product development, and client relationships.</p>
-            
-            <div class="highlight-tags">
-              
-              <span class="highlight-tag">Scaled B2B web development operations</span>
-              
-              <span class="highlight-tag">Led product development and UX strategy</span>
-              
-              <span class="highlight-tag">Managed cross-functional development team</span>
-              
-            </div>
-            
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Trainee Business Development</h3>
-            <div class="company">Sparkasse Vorpommern</div>
-            <div class="period">Apr 2021 - Oct 2022 &middot; Mecklenburg-West Pomerania, Germany</div>
-            <p>Business development trainee focused on digital innovation
-and new business models in the banking sector.</p>
-            
-            <div class="highlight-tags">
-              
-              <span class="highlight-tag">Contributed to Karla Plattform GmbH launch</span>
-              
-              <span class="highlight-tag">UX research and B2B strategy</span>
-              
-              <span class="highlight-tag">Digital transformation initiatives</span>
-              
-            </div>
-            
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Product Designer</h3>
-            <div class="company">Karla Plattform GmbH</div>
-            <div class="period">Apr 2021 - Oct 2022 &middot; Greifswald, Germany</div>
-            <p>Product design and corporate identity for a digital platform venture
-within the Sparkasse ecosystem.</p>
-            
-            <div class="highlight-tags">
-              
-              <span class="highlight-tag">Corporate identity design</span>
-              
-              <span class="highlight-tag">Software development contribution</span>
-              
-              <span class="highlight-tag">Product-market fit research</span>
-              
-            </div>
-            
-          </div>
-        </div>
-        
       </div>
-    </section>
-  </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>CEO & Founder</h3>
+          <div class="company">Born2Hold Ventures GmbH</div>
+          <div class="period">Dec 2022 - Present // Berlin, Germany</div>
+          <p>Venture holding and strategic advisory for early-stage startups.
+Focus on restructuring, corporate governance, and founder support.</p>
+          
+          <div class="highlight-tags">
+            
+            <span class="highlight-tag">Startup venture portfolio management</span>
+            
+            <span class="highlight-tag">Corporate governance consulting</span>
+            
+            <span class="highlight-tag">Strategic restructuring advisory</span>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>COO & Co-Founder</h3>
+          <div class="company">Camsol.io</div>
+          <div class="period">Nov 2022 - Apr 2025 // Berlin, Germany</div>
+          <p>B2B web development and digital solutions. Managed operations,
+product development, and client relationships.</p>
+          
+          <div class="highlight-tags">
+            
+            <span class="highlight-tag">Scaled B2B web development operations</span>
+            
+            <span class="highlight-tag">Led product development and UX strategy</span>
+            
+            <span class="highlight-tag">Managed cross-functional development team</span>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Trainee Business Development</h3>
+          <div class="company">Sparkasse Vorpommern</div>
+          <div class="period">Apr 2021 - Oct 2022 // Mecklenburg-West Pomerania, Germany</div>
+          <p>Business development trainee focused on digital innovation
+and new business models in the banking sector.</p>
+          
+          <div class="highlight-tags">
+            
+            <span class="highlight-tag">Contributed to Karla Plattform GmbH launch</span>
+            
+            <span class="highlight-tag">UX research and B2B strategy</span>
+            
+            <span class="highlight-tag">Digital transformation initiatives</span>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Product Designer</h3>
+          <div class="company">Karla Plattform GmbH</div>
+          <div class="period">Apr 2021 - Oct 2022 // Greifswald, Germany</div>
+          <p>Product design and corporate identity for a digital platform venture
+within the Sparkasse ecosystem.</p>
+          
+          <div class="highlight-tags">
+            
+            <span class="highlight-tag">Corporate identity design</span>
+            
+            <span class="highlight-tag">Software development contribution</span>
+            
+            <span class="highlight-tag">Product-market fit research</span>
+            
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </section>
 
   <!-- Recommendations -->
   
+  <div class="section-divider"></div>
   <section class="section">
+    <div class="section-label">Testimonials</div>
     <h2 class="section-title">What Others Say</h2>
     <p class="section-subtitle">Recommendations from colleagues and mentors.</p>
     <div class="reco-grid">
@@ -572,24 +1126,42 @@ within the Sparkasse ecosystem.</p>
   
 
   <!-- Contact -->
-  <div class="section-alt">
-    <section class="section" id="contact">
-      <div class="contact-inner">
-        <h2>Let's talk</h2>
-        <p>I'm always open to interesting conversations about product, technology, and building things that matter.</p>
-        <div class="contact-links">
-          <a href="mailto:leonardo@creativate.tech" class="contact-link">&#9993; Email</a>
-          <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="contact-link">&#128279; LinkedIn</a>
-          <a href="https://github.com/adminleo" target="_blank" rel="noopener" class="contact-link">&#128187; GitHub</a>
-        </div>
+  <div class="section-divider"></div>
+  <section class="section" id="contact">
+    <div class="contact-inner">
+      <h2><span class="gradient-text">Let's talk</span></h2>
+      <p>Open to conversations about product, technology, and building things that matter.</p>
+      <div class="contact-links">
+        <a href="mailto:leonardo@creativate.tech" class="contact-link">&#9993; Email</a>
+        <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="contact-link">&#128279; LinkedIn</a>
+        <a href="https://github.com/adminleo" target="_blank" rel="noopener" class="contact-link">&#128187; GitHub</a>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
-    &copy; 2026 Leonardo Bornhaeusser. Built in Berlin.
+    &copy; 2026 Leonardo Bornhaeusser // built in berlin
   </footer>
+
+  <!-- Floating PDF Download Button -->
+  <button class="pdf-fab" onclick="window.print()" aria-label="Download as PDF">
+    <span class="tooltip">Save as PDF</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+  </button>
+
+  <script>
+    // Scroll-triggered section animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.section').forEach(s => observer.observe(s));
+  </script>
 
 </body>
 </html>
