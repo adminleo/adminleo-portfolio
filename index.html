@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leonardo Bornhaeusser — Product & Technology Leadership</title>
-  <meta name="description" content="I help companies build products, lead teams, and bridge the gap between technology and business impact.">
+  <title>Leonardo Bornhaeusser — Product · Innovation · AI</title>
+  <meta name="description" content="Founder &amp; CEO building AI decision software at Creativate. 11 years across product, venture building &amp; business development. Open to part-time leadership, advisory &amp; consulting roles.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -113,16 +113,129 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.4; }
     }
-    .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+    .nav-links { display: flex; gap: 1rem; align-items: center; }
     .nav-links a {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--text-secondary);
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       transition: color 0.2s;
+      white-space: nowrap;
     }
     .nav-links a:hover { color: #fff; }
+
+    /* ─── Language Switcher ─── */
+    .lang-switcher {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      margin-left: 0.75rem;
+      padding-left: 0.75rem;
+      border-left: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 0.25rem 0.45rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-dim);
+      font-weight: 600;
+      font-family: var(--mono);
+      line-height: 1;
+    }
+    .lang-btn:hover { border-color: var(--border); color: var(--text-secondary); }
+    .lang-btn.active {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+      background: rgba(34,211,238,0.08);
+    }
+
+    /* ─── Burger Menu ─── */
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 60;
+    }
+    .burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile overlay menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      background: rgba(10,10,15,0.97);
+      backdrop-filter: blur(30px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.75rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+    }
+    .mobile-menu a {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-menu .lang-switcher-mobile {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .mobile-menu .lang-btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.7rem;
+    }
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 1.3rem;
+      transition: all 0.2s;
+    }
+    .mobile-menu-close:hover {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+    }
 
     /* ─── Hero ─── */
     .hero {
@@ -259,6 +372,8 @@
       padding: 5rem 2rem;
     }
     .section-divider {
+      max-width: var(--max-width);
+      margin: 0 auto;
       border-top: 1px solid var(--border);
     }
     .section-label {
@@ -293,9 +408,16 @@
     /* ─── About ─── */
     .about-text {
       font-size: 1.1rem;
-      color: var(--text-secondary);
+      color: var(--text-dim);
       line-height: 1.85;
-      max-width: 680px;
+      max-width: 900px;
+      transition: color 0.3s ease;
+    }
+    .about-text:hover {
+      color: var(--text-secondary);
+    }
+    @media (max-width: 768px) {
+      .about-text { color: var(--text-secondary); }
     }
 
     /* ─── Services / What I Do ─── */
@@ -432,6 +554,31 @@
       border-color: rgba(124,58,237,0.4);
       box-shadow: 0 0 10px rgba(124,58,237,0.15);
     }
+    .edu-status {
+      font-size: 0.7em;
+      font-weight: 400;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    .timeline-more {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+    }
+    .timeline-more a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .timeline-more a:hover {
+      color: var(--accent-2);
+      border-color: var(--accent-2);
+    }
 
     /* ─── Skills ─── */
     .skills-section { margin-top: 3rem; }
@@ -458,6 +605,190 @@
       border-color: rgba(124,58,237,0.2);
       color: var(--accent-3);
     }
+
+    /* ─── Projects ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--glow);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .project-card h3 a {
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .project-card h3 a:hover { color: var(--accent-2); }
+    .project-role {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent-2);
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 20px;
+      padding: 0.15rem 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 1rem;
+    }
+    .project-tech span {
+      background: var(--gradient-subtle);
+      border: 1px solid rgba(124,58,237,0.18);
+      color: var(--accent-3);
+      padding: 0.15rem 0.55rem;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-2);
+    }
+    .project-link:hover { color: #67e8f9; }
+
+    /* ─── Connect Section ─── */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .connect-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .connect-card:hover {
+      border-color: var(--accent-2);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      color: var(--text);
+    }
+    .connect-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .connect-card:hover .connect-icon { opacity: 1; }
+    .connect-info { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+    .connect-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .connect-detail {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .connect-card:hover .connect-detail { color: var(--accent-2); }
+
+    /* Resources row */
+    .connect-resources {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .connect-resources-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+    .resources-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .resource-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .resource-chip:hover {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+      background: var(--bg-card-hover);
+    }
+    .resource-chip-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+    .resource-chip:hover .resource-chip-icon { opacity: 1; }
 
     /* ─── Recommendations ─── */
     .reco-grid {
@@ -594,60 +925,12 @@
     }
     .linkedin-card-link:hover { color: #0d7fdb; }
 
-    /* ─── Contact ─── */
-    .contact-inner {
-      text-align: center;
-      max-width: 550px;
-      margin: 0 auto;
-    }
-    .contact-inner h2 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.03em;
-    }
-    .contact-inner h2 .gradient-text {
-      background: linear-gradient(90deg, #7c3aed, #06b6d4, #8b5cf6, #22d3ee, #7c3aed);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .contact-inner p {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      line-height: 1.7;
-    }
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.25rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: all 0.2s;
-    }
-    .contact-link:hover {
-      border-color: var(--accent-2);
-      color: var(--accent-2);
-      background: rgba(6,182,212,0.05);
-    }
-
     /* ─── Footer ─── */
     .footer {
       position: relative;
       z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
       border-top: 1px solid var(--border);
       padding: 2rem;
       text-align: center;
@@ -716,16 +999,6 @@
       box-shadow: 0 0 8px rgba(34,211,238,0.5);
     }
 
-    /* ─── Contact gradient text shimmer ─── */
-    .contact-inner h2 .gradient-text {
-      background-size: 200% auto;
-      animation: gradientShift 4s linear infinite;
-    }
-    @keyframes gradientShift {
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
-    }
-
     /* ─── Floating PDF Download Bubble ─── */
     .pdf-fab {
       position: fixed;
@@ -788,34 +1061,52 @@
 
     /* ─── Print / PDF Light Theme ─── */
     @media print {
+      @page {
+        size: A4;
+        margin: 1.4cm 1.6cm;
+      }
+
       *, *::before, *::after {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
+
+      /* ---- Base ---- */
       body {
         background: #fff !important;
         color: #1a1a1a !important;
-        font-size: 11pt !important;
-        line-height: 1.5 !important;
+        font-size: 9pt !important;
+        line-height: 1.45 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
       }
       body::before, body::after { display: none !important; }
-      .nav, .pdf-fab { display: none !important; }
-      .section-divider { border-color: #e5e5e5 !important; }
-      a { color: #4f46e5 !important; }
+      a { color: #333 !important; text-decoration: none !important; }
+
+      /* ---- Hide UI elements ---- */
+      .nav, .pdf-fab, .hero-cta { display: none !important; }
+
+      /* ---- Section dividers ---- */
+      .section-divider {
+        border-color: #ddd !important;
+        margin: 0.3rem auto !important;
+      }
+
+      /* ---- Hero: compact ---- */
       .hero {
-        padding: 1.5rem 0 1rem !important;
-        gap: 2rem !important;
+        padding: 0.8rem 0 0.5rem !important;
+        gap: 1.2rem !important;
         animation: none !important;
       }
       .hero-label {
         color: #6366f1 !important;
+        font-size: 0.6rem !important;
       }
-      .hero-label::before {
-        background: #6366f1 !important;
-      }
+      .hero-label::before { background: #6366f1 !important; }
       .hero-text h1 {
-        font-size: 2.2rem !important;
+        font-size: 1.6rem !important;
         color: #1a1a1a !important;
+        margin-bottom: 0.3rem !important;
       }
       .hero-text h1 .gradient-text {
         background: none !important;
@@ -824,55 +1115,88 @@
       }
       .hero-text .subtitle {
         color: #555 !important;
+        font-size: 0.78rem !important;
+        line-height: 1.4 !important;
       }
       .hero-image::before, .hero-image::after { display: none !important; }
       .hero-image img {
-        width: 140px !important;
-        height: 140px !important;
+        width: 100px !important;
+        height: 100px !important;
         border: 2px solid #ddd !important;
         box-shadow: none !important;
       }
+
+      /* ---- Sections: tight spacing ---- */
       .section {
-        padding: 1.5rem 0 !important;
+        padding: 0.6rem 0 !important;
         opacity: 1 !important;
         transform: none !important;
       }
       .section-label {
         color: #6366f1 !important;
+        font-size: 0.55rem !important;
+        margin-bottom: 0.15rem !important;
       }
       .section-label::before { color: #999 !important; }
       .section-title {
-        font-size: 1.3rem !important;
+        font-size: 1rem !important;
         color: #1a1a1a !important;
+        margin-bottom: 0.2rem !important;
       }
       .section-subtitle {
         color: #666 !important;
+        font-size: 0.75rem !important;
+        margin-bottom: 0.5rem !important;
       }
+
+      /* ---- About ---- */
       .about-text {
         color: #444 !important;
-        font-size: 0.95rem !important;
+        font-size: 0.78rem !important;
+        line-height: 1.5 !important;
+      }
+
+      /* ---- Services: compact grid ---- */
+      .services-grid {
+        gap: 0.5rem !important;
       }
       .service-card {
         background: #f8f8fa !important;
         border-color: #e5e5e5 !important;
         break-inside: avoid;
+        page-break-inside: avoid;
         box-shadow: none !important;
+        padding: 0.6rem !important;
       }
       .service-card::before, .service-card::after { display: none !important; }
-      .service-card h3 { color: #1a1a1a !important; }
-      .service-card p { color: #555 !important; }
+      .service-card h3 { color: #1a1a1a !important; font-size: 0.8rem !important; }
+      .service-card p { color: #555 !important; font-size: 0.72rem !important; }
       .service-icon {
         background: #eee !important;
         border-color: #ddd !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1rem !important;
       }
+
+      /* ---- Skills ---- */
       .skill-pill {
         background: #f0f0f5 !important;
         border-color: #ddd !important;
         color: #444 !important;
+        font-size: 0.65rem !important;
+        padding: 0.15rem 0.45rem !important;
       }
       .skill-pill.tech {
         border-color: #c4b5fd !important;
         color: #6d28d9 !important;
+      }
+
+      /* ---- Timeline / Experience ---- */
+      .timeline-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 0.4rem !important;
       }
       .timeline-dot {
         background: #6366f1 !important;
@@ -883,87 +1207,264 @@
         background: #ddd !important;
         opacity: 1 !important;
       }
-      .timeline-content h3 { color: #1a1a1a !important; }
+      .timeline-content {
+        padding-bottom: 0.3rem !important;
+      }
+      .timeline-content h3 {
+        color: #1a1a1a !important;
+        font-size: 0.85rem !important;
+      }
       .timeline-content .company {
         background: none !important;
         -webkit-text-fill-color: #4f46e5 !important;
         color: #4f46e5 !important;
+        font-size: 0.75rem !important;
       }
-      .timeline-content .period { color: #888 !important; }
-      .timeline-content p { color: #444 !important; }
+      .timeline-content .period {
+        color: #888 !important;
+        font-size: 0.65rem !important;
+      }
+      .timeline-content p {
+        color: #444 !important;
+        font-size: 0.75rem !important;
+        line-height: 1.45 !important;
+      }
+      .timeline-more {
+        font-size: 0.72rem !important;
+      }
       .highlight-tag {
         background: #f0edf8 !important;
         border-color: #d4c8f0 !important;
         color: #6d28d9 !important;
+        font-size: 0.6rem !important;
+        padding: 0.1rem 0.35rem !important;
       }
-      .reco-card, .linkedin-card {
+
+      /* ---- Projects: compact cards ---- */
+      .projects-grid {
+        gap: 0.5rem !important;
+      }
+      .project-card {
         background: #f8f8fa !important;
         border-color: #e5e5e5 !important;
         break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        padding: 0.6rem !important;
       }
-      .linkedin-card-body { color: #444 !important; }
-      .linkedin-card-author { color: #1a1a1a !important; }
-      .linkedin-card-date, .linkedin-stat { color: #888 !important; }
+      .project-card::before { display: none !important; }
+      .project-card h3 { font-size: 0.82rem !important; }
+      .project-card h3 a { color: #1a1a1a !important; }
+      .project-role {
+        font-size: 0.6rem !important;
+        color: #6d28d9 !important;
+        background: #f0edf8 !important;
+        border-color: #d4c8f0 !important;
+        padding: 0.08rem 0.4rem !important;
+      }
+      .project-card p {
+        color: #555 !important;
+        font-size: 0.7rem !important;
+        line-height: 1.4 !important;
+      }
+      .project-tech span {
+        background: #f0edf8 !important;
+        border-color: #d4c8f0 !important;
+        color: #6d28d9 !important;
+        font-size: 0.58rem !important;
+      }
+      .project-link { color: #4f46e5 !important; font-size: 0.7rem !important; }
+
+      /* ---- LinkedIn posts: compact ---- */
+      .linkedin-grid {
+        gap: 0.5rem !important;
+      }
+      .linkedin-card {
+        background: #f8f8fa !important;
+        border-color: #e5e5e5 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        padding: 0.6rem !important;
+      }
+      .linkedin-card-body {
+        color: #444 !important;
+        font-size: 0.7rem !important;
+        line-height: 1.4 !important;
+      }
+      .linkedin-card-author { color: #1a1a1a !important; font-size: 0.72rem !important; }
+      .linkedin-card-date, .linkedin-stat { color: #888 !important; font-size: 0.6rem !important; }
       .linkedin-card-icon { color: #0a66c2 !important; }
-      .linkedin-card-link { color: #0a66c2 !important; }
+      .linkedin-card-link { color: #0a66c2 !important; font-size: 0.65rem !important; }
+
+      /* ---- Recommendations ---- */
+      .reco-card {
+        background: #f8f8fa !important;
+        border-color: #e5e5e5 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
       .reco-card blockquote {
         color: #444 !important;
         border-left-color: #6366f1 !important;
+        font-size: 0.75rem !important;
       }
-      .reco-author { color: #1a1a1a !important; }
-      .reco-role { color: #666 !important; }
-      .contact-inner h2 .gradient-text {
-        background: none !important;
-        -webkit-text-fill-color: #4f46e5 !important;
-        color: #4f46e5 !important;
-        animation: none !important;
+      .reco-author { color: #1a1a1a !important; font-size: 0.72rem !important; }
+      .reco-role { color: #666 !important; font-size: 0.65rem !important; }
+
+      /* ---- Connect ---- */
+      .connect-grid {
+        gap: 0.4rem !important;
       }
-      .contact-inner p { color: #555 !important; }
-      .contact-link {
+      .connect-card, .resource-chip {
         background: #f0f0f5 !important;
         border-color: #ddd !important;
         color: #444 !important;
+        break-inside: avoid;
+        font-size: 0.72rem !important;
       }
+      .connect-card:hover, .resource-chip:hover { color: #444 !important; }
+      .connect-detail { color: #666 !important; font-size: 0.68rem !important; }
+      .connect-resources { border-color: #ddd !important; }
+      .connect-resources-label { color: #888 !important; font-size: 0.65rem !important; }
+      .resource-chip { font-size: 0.65rem !important; padding: 0.25rem 0.5rem !important; }
+
+      /* ---- Footer ---- */
       .footer {
         color: #999 !important;
         border-color: #e5e5e5 !important;
+        font-size: 0.65rem !important;
+        padding: 0.4rem 0 !important;
       }
-      .btn-gradient {
-        background: #4f46e5 !important;
-        box-shadow: none !important;
+
+      /* ---- Page break control ---- */
+      .section-label, .section-title {
+        page-break-after: avoid;
+        break-after: avoid;
       }
-      .btn-outline {
-        border-color: #ccc !important;
-        color: #444 !important;
-      }
-      .hero-cta { display: none !important; }
-      @page {
-        margin: 1.5cm;
-        size: A4;
-      }
+      p, li { orphans: 3; widows: 3; }
     }
 
     /* ─── Responsive ─── */
+    /* ─── Tablet ─── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .connect-grid { grid-template-columns: 1fr 1fr; }
+      .hero { gap: 3rem; padding: 5rem 2rem 4rem; }
+      .hero-image img { width: 220px; height: 220px; }
+    }
+
+    /* ─── Mobile ─── */
     @media (max-width: 768px) {
+      /* Nav — burger mode */
+      .nav { padding: 0.75rem 1rem; }
+      .nav-inner { gap: 0.75rem; }
+      .nav-name { font-size: 0.8rem; white-space: nowrap; }
+      .nav-links { display: none; }
+      .lang-switcher { display: none; }
+      .burger { display: block; }
+
+      /* Hero — stacked, centered */
       .hero {
         flex-direction: column-reverse;
         text-align: center;
-        padding: 3.5rem 1.5rem 3rem;
-        gap: 2.5rem;
+        padding: 2.5rem 1.25rem 2rem;
+        gap: 2rem;
       }
-      .hero-label { justify-content: center; }
-      .hero-text h1 { font-size: 2.25rem; }
-      .hero-text .subtitle { max-width: 100%; }
-      .hero-cta { justify-content: center; }
-      .hero-image img { width: 180px; height: 180px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .reco-grid { grid-template-columns: 1fr; }
-      .linkedin-grid { grid-template-columns: 1fr; }
-      .section { padding: 3.5rem 1.5rem; }
-      .nav { padding: 0.75rem 1rem; }
-      .nav-links { gap: 1rem; }
-      .section-title { font-size: 1.5rem; }
-      .contact-inner h2 { font-size: 1.75rem; }
+      .hero-label { justify-content: center; font-size: 0.7rem; }
+      .hero-text h1 { font-size: 2rem; }
+      .hero-text .subtitle { max-width: 100%; font-size: 0.95rem; }
+      .hero-cta { justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+      .hero-cta .btn { padding: 0.65rem 1.25rem; font-size: 0.85rem; width: 100%; justify-content: center; }
+      .hero-image img { width: 160px; height: 160px; }
+      .hero-image::before { inset: -15px; }
+
+      /* Sections */
+      .section { padding: 2.5rem 1.25rem; }
+      .section-title { font-size: 1.4rem; }
+      .section-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
+      .section-label { font-size: 0.65rem; }
+
+      /* About */
+      .about-text { font-size: 0.95rem; }
+
+      /* Skills — smaller pills, tighter */
+      .skills-section { margin-top: 2rem; }
+      .skills-grid { gap: 0.4rem; }
+      .skill-pill { padding: 0.35rem 0.75rem; font-size: 0.75rem; }
+
+      /* Services — single column */
+      .services-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .service-card { padding: 1.5rem 1.25rem; }
+      .service-icon { width: 42px; height: 42px; font-size: 1.2rem; margin-bottom: 1rem; }
+
+      /* Experience timeline */
+      .timeline-item { gap: 1.25rem; padding-bottom: 2rem; }
+      .timeline-content h3 { font-size: 0.95rem; }
+      .timeline-content .company { font-size: 0.85rem; }
+      .timeline-content .period { font-size: 0.68rem; }
+      .timeline-content p { font-size: 0.82rem; }
+      .highlight-tags { gap: 0.3rem; }
+      .highlight-tag { font-size: 0.62rem; padding: 0.15rem 0.5rem; }
+
+      /* Projects — single column */
+      .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+      /* Connect — stacked on mobile */
+      .connect-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+      .connect-card { padding: 1rem 1.25rem; }
+      .connect-label { font-size: 0.85rem; }
+      .connect-detail { font-size: 0.7rem; }
+      .resources-row { gap: 0.4rem; }
+      .resource-chip { font-size: 0.75rem; padding: 0.4rem 0.85rem; }
+      .project-card { padding: 1.5rem 1.25rem; }
+      .project-card h3 { font-size: 1rem; }
+      .project-card p { font-size: 0.82rem; }
+      .project-tech span { font-size: 0.6rem; }
+
+      /* Recommendations — single column */
+      .reco-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .reco-card { padding: 1.5rem; }
+      .reco-card blockquote { font-size: 0.85rem; }
+
+      /* LinkedIn posts — single column */
+      .linkedin-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .linkedin-card { padding: 1.5rem; }
+      .linkedin-card-body { font-size: 0.82rem; -webkit-line-clamp: 4; }
+
+      /* Footer */
+      .footer { font-size: 0.7rem; padding: 1.5rem 1rem; }
+
+      /* PDF fab — smaller, avoid thumb zone conflict */
+      .pdf-fab { width: 48px; height: 48px; bottom: 1.5rem; right: 1.25rem; }
+      .pdf-fab .tooltip { display: none; }
+    }
+
+    /* ─── Small phones (< 400px) ─── */
+    @media (max-width: 400px) {
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .hero-text h1 { font-size: 1.7rem; }
+      .hero-text .subtitle { font-size: 0.88rem; }
+      .hero-image img { width: 130px; height: 130px; }
+      .section { padding: 2rem 1rem; }
+      .section-title { font-size: 1.25rem; }
+      .service-card, .project-card, .reco-card, .linkedin-card { padding: 1.25rem 1rem; }
+      .nav-links a { font-size: 0.6rem; letter-spacing: 0.04em; }
+    }
+
+    /* ─── Safe area for notched phones ─── */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .footer { padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+      .pdf-fab { bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
+    }
+
+    /* ─── Touch: larger tap targets ─── */
+    @media (hover: none) and (pointer: coarse) {
+      .nav-links a { min-height: 44px; display: flex; align-items: center; }
+      .btn { min-height: 48px; }
+      .connect-card { min-height: 48px; }
+      .resource-chip { min-height: 36px; }
+      .skill-pill { min-height: 36px; display: inline-flex; align-items: center; }
     }
   </style>
 </head>
@@ -974,37 +1475,63 @@
     <div class="nav-inner">
       <span class="nav-name"><span class="dot"></span>leonardo_bornhaeusser</span>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#services">Stack</a>
-        <a href="#experience">Experience</a>
-        <a href="#posts">Posts</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#experience" data-i18n="nav_experience">Experience</a>
+        <a href="#projects" data-i18n="nav_projects">Projects</a>
+        <a href="#links" data-i18n="nav_links_nav">Links</a>
+        <a href="cv.html" data-i18n="nav_cv">CV</a>
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="switchLang('en')" title="English">EN</button>
+          <button class="lang-btn" onclick="switchLang('de')" title="Deutsch">DE</button>
+          <button class="lang-btn" onclick="switchLang('fr')" title="Français">FR</button>
+        </div>
       </div>
+      <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Overlay Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">&times;</button>
+    <a href="#about" onclick="closeMenu()" data-i18n="nav_about">About</a>
+    <a href="#experience" onclick="closeMenu()" data-i18n="nav_experience">Experience</a>
+    <a href="#projects" onclick="closeMenu()" data-i18n="nav_projects">Projects</a>
+    <a href="#links" onclick="closeMenu()" data-i18n="nav_links_nav">Links</a>
+    <a href="#contact" onclick="closeMenu()" data-i18n="nav_contact">Contact</a>
+    <a href="cv.html" onclick="closeMenu()" data-i18n="nav_cv">CV</a>
+    <div class="lang-switcher-mobile">
+      <button class="lang-btn active" onclick="switchLang('en')" title="English">EN</button>
+      <button class="lang-btn" onclick="switchLang('de')" title="Deutsch">DE</button>
+      <button class="lang-btn" onclick="switchLang('fr')" title="Français">FR</button>
+    </div>
+  </div>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-text">
-      <div class="hero-label">Product & Technology Leadership</div>
+      <div class="hero-label">Product · Innovation · AI</div>
       <h1>Leonardo<br><span class="gradient-text">Bornhaeusser</span></h1>
-      <p class="subtitle">I help companies build products, lead teams, and bridge the gap between technology and business impact.</p>
+      <p class="subtitle" data-i18n="hero_subtitle">Founder &amp; CEO building AI decision software at Creativate. 11 years across product, venture building &amp; business development. Open to part-time leadership, advisory &amp; consulting roles.</p>
       <div class="hero-cta">
-        <a href="mailto:leonardo@creativate.tech" class="btn btn-gradient">Let's talk</a>
+        <a href="mailto:leonardo@creativate.tech" class="btn btn-gradient" data-i18n="cta_talk">Let&#39;s talk</a>
         <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
       </div>
     </div>
     <div class="hero-image">
-      <img src="/adminleo-portfolio/assets/img/profile.jpg" alt="Leonardo Bornhaeusser">
+      <img src="assets/img/profile.jpg" alt="Leonardo Bornhaeusser">
     </div>
   </section>
 
   <!-- About -->
   <div class="section-divider"></div>
   <section class="section" id="about">
-    <div class="section-label">About</div>
-    <h2 class="section-title">Background</h2>
-    <p class="about-text">I'm a product and business leader with deep technical roots. Over the past 11 years, I've founded ventures, designed products, and built teams at the intersection of technology, design, and strategy. My strength lies in translating complex technical possibilities into clear product decisions and business outcomes. Whether it's shaping product strategy, leading cross-functional teams, or architecting AI-powered solutions, I bring a hands-on understanding of technology paired with a relentless focus on what actually matters: the people using the product and the business building it.
+    <div class="section-label" data-i18n="label_about">About</div>
+    <h2 class="section-title" data-i18n="title_about">Background</h2>
+    <p class="about-text" data-i18n="about_text">Founder building AI decision software and collaborating with companies on product and innovation projects. As CEO &amp; Co-Founder of Creativate AI Studio, I&#39;m developing cNode — a platform that helps teams structure complex decisions, compare scenarios, and generate explainable AI-assisted recommendations. Alongside the product, we launched AI Playbook, a multilingual knowledge base covering the EU AI Act, GDPR, and responsible AI adoption.
+Over the past decade I&#39;ve built and operated multiple ventures across product design, business development, and software. My work usually sits at the intersection of product strategy, AI, and early-stage execution — turning ideas into working systems and prototypes.
+In addition to running Creativate, I collaborate with companies on part-time or project engagements around product strategy, AI product development, MVP architecture, and early-stage venture building. I enjoy working with small teams that move quickly and build meaningful products.
 </p>
 
     <!-- Skills Pills -->
@@ -1051,27 +1578,27 @@
   <!-- What I Do -->
   <div class="section-divider"></div>
   <section class="section" id="services">
-    <div class="section-label">Services</div>
-    <h2 class="section-title">What I Do</h2>
-    <p class="section-subtitle">How I help companies build great products and scale effectively.</p>
+    <div class="section-label" data-i18n="label_services">Services</div>
+    <h2 class="section-title" data-i18n="title_services">What I Do</h2>
+    <p class="section-subtitle" data-i18n="subtitle_services">How I help companies build great products and scale effectively.</p>
     <div class="services-grid">
       
       <div class="service-card">
         <div class="service-icon">🎯</div>
-        <h3>Product Strategy & Design</h3>
-        <p>From market research to UX strategy — shaping products that solve real problems. I bridge user needs with business goals through design thinking and data-driven decisions.</p>
+        <h3>Product &amp; Innovation</h3>
+        <p>From zero-to-one product builds to scaling existing platforms. User research, roadmapping, prototyping, and hands-on execution — across B2B SaaS, deep tech, and digital products.</p>
       </div>
       
       <div class="service-card">
-        <div class="service-icon">💻</div>
-        <h3>Technology & Engineering Leadership</h3>
-        <p>Building teams, choosing architectures, and shipping at the intersection of AI and product. I lead engineering with a product mindset and deliver with technical depth.</p>
+        <div class="service-icon">🤖</div>
+        <h3>AI Decision Intelligence</h3>
+        <p>Building explainable AI systems at Creativate. EU AI Act compliance, responsible AI adoption, and turning complex AI capabilities into practical tools teams actually use.</p>
       </div>
       
       <div class="service-card">
         <div class="service-icon">📈</div>
-        <h3>Business Development & Operations</h3>
-        <p>Scaling ventures, optimizing processes, and navigating governance. I turn strategic vision into operational reality with measurable business impact.</p>
+        <h3>Business Development &amp; Venture Building</h3>
+        <p>Partnerships, go-to-market strategy, and operational setup for early-stage ventures. Experience across startups, accelerators, and corporate innovation — connecting dots between teams, investors, and markets.</p>
       </div>
       
     </div>
@@ -1080,31 +1607,36 @@
   <!-- Experience -->
   <div class="section-divider"></div>
   <section class="section" id="experience">
-    <div class="section-label">Career</div>
-    <h2 class="section-title">Experience</h2>
-    <p class="section-subtitle">Where I've built, led, and learned.</p>
+    <div class="section-label" data-i18n="label_career">Career</div>
+    <h2 class="section-title" data-i18n="title_experience">Experience</h2>
+    <p class="section-subtitle" data-i18n="subtitle_experience">Where I've built, led, and learned.</p>
     <div class="timeline">
       
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>Founder / CTO</h3>
-          <div class="company">Creativate AIStudio</div>
-          <div class="period">Apr 2024 - Present // Berlin, Germany</div>
-          <p>Building Europe's layer of decision intelligence. Leading development of cNode,
-a modular AI system for explainable forecasting and scenario planning.
-EU AI Act compliance architecture. B2B deep-tech venture with co-founders
-Lisa Bennewitz (CFO) and Stella Manga Chesnay (Legal/GDPR).</p>
+          <h3>CEO &amp; Co-Founder</h3>
+          <div class="company">Creativate AIStudio (Creativate Technologies GmbH)</div>
+          <div class="period">Apr 2024 - Present // Frankfurt am Main, Germany</div>
+          <p>CEO &amp; Co-Founder of a deep-tech venture studio building cNode, an AI-augmented
+decision platform for SMEs, plus AI Playbook, a multilingual regulatory knowledge
+base. I lead product direction, technical architecture, and prototyping alongside
+two co-founders. Accepted into the Futury accelerator and secured early angel
+investment through Tokenize.it.</p>
           
           <div class="highlight-tags">
             
-            <span class="highlight-tag">Built explainable AI forecasting platform (cNode)</span>
+            <span class="highlight-tag">Built cNode decision platform (Next.js 14, FastAPI, PostgreSQL/TimescaleDB, multi-provider AI)</span>
             
-            <span class="highlight-tag">EU AI Act compliance-by-design architecture</span>
+            <span class="highlight-tag">Shipped AI Playbook — multilingual compliance knowledge base (30+ articles, 3 languages)</span>
             
-            <span class="highlight-tag">Accepted into Futury Female Founders accelerator program</span>
+            <span class="highlight-tag">Designed EU AI Act compliance approach for the product suite</span>
             
-            <span class="highlight-tag">Secured strategic angel investors via Tokenize.it</span>
+            <span class="highlight-tag">Part of Futury Female Founders accelerator cohort</span>
+            
+            <span class="highlight-tag">Secured early angel funding via Tokenize.it</span>
+            
+            <span class="highlight-tag">Running monorepo ecosystem (Turborepo) with 6+ apps</span>
             
           </div>
           
@@ -1114,19 +1646,19 @@ Lisa Bennewitz (CFO) and Stella Manga Chesnay (Legal/GDPR).</p>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>CEO & Founder</h3>
+          <h3>Founder &amp; Managing Director</h3>
           <div class="company">Born2Hold Ventures GmbH</div>
           <div class="period">Dec 2022 - Present // Berlin, Germany</div>
-          <p>Venture holding and strategic advisory for early-stage startups.
-Focus on restructuring, corporate governance, and founder support.</p>
+          <p>Personal venture holding supporting early-stage founders with product
+development, governance, and venture structuring.</p>
           
           <div class="highlight-tags">
             
-            <span class="highlight-tag">Startup venture portfolio management</span>
+            <span class="highlight-tag">Small portfolio of early-stage advisory engagements</span>
             
-            <span class="highlight-tag">Corporate governance consulting</span>
+            <span class="highlight-tag">Corporate governance and restructuring support</span>
             
-            <span class="highlight-tag">Strategic restructuring advisory</span>
+            <span class="highlight-tag">Hands-on founder mentoring</span>
             
           </div>
           
@@ -1136,19 +1668,27 @@ Focus on restructuring, corporate governance, and founder support.</p>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>COO & Co-Founder</h3>
-          <div class="company">Camsol.io</div>
+          <h3>Co-Founder &amp; Head of Operations</h3>
+          <div class="company">Camsol.io (Camsol Services GmbH)</div>
           <div class="period">Nov 2022 - Apr 2025 // Berlin, Germany</div>
-          <p>B2B web development and digital solutions. Managed operations,
-product development, and client relationships.</p>
+          <p>Co-founded a tech-for-equity agency building software for startups and SMEs.
+Led operations, client delivery, and product direction. Also managed our internal
+incubator (Camsol Innovations GmbH, now seventy2 Holding GmbH), overseeing
+portfolio health, milestone tracking, and product design for incubation projects
+including Gasvisor, CheckMe, and Skulup. Scaled to 6 GmbHs + 2 LTDs,
+~100 people at peak across Germany, Cameroon, and Rwanda.</p>
           
           <div class="highlight-tags">
             
-            <span class="highlight-tag">Scaled B2B web development operations</span>
+            <span class="highlight-tag">Led operations and client management for B2B tech agency</span>
             
-            <span class="highlight-tag">Led product development and UX strategy</span>
+            <span class="highlight-tag">Managed internal incubator portfolio (Gasvisor, CheckMe, Skulup)</span>
             
-            <span class="highlight-tag">Managed cross-functional development team</span>
+            <span class="highlight-tag">Oversaw portfolio health monitoring and milestone delivery</span>
+            
+            <span class="highlight-tag">Scaled from 2 co-founders to ~100 people across 3 countries</span>
+            
+            <span class="highlight-tag">Built 6 GmbHs + 2 LTDs in 3 years</span>
             
           </div>
           
@@ -1158,67 +1698,205 @@ product development, and client relationships.</p>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3>Trainee Business Development</h3>
+          <h3>Business Development Trainee</h3>
           <div class="company">Sparkasse Vorpommern</div>
           <div class="period">Apr 2021 - Oct 2022 // Mecklenburg-West Pomerania, Germany</div>
-          <p>Business development trainee focused on digital innovation
-and new business models in the banking sector.</p>
+          <p>My first &#34;real job&#34; in a structured corporate environment. Learned a lot
+about how larger organisations work, contributed to a digital platform launch
+(Karla Plattform GmbH), and got hands-on with UX research and B2B strategy.</p>
           
           <div class="highlight-tags">
             
-            <span class="highlight-tag">Contributed to Karla Plattform GmbH launch</span>
+            <span class="highlight-tag">Helped launch Karla Plattform GmbH</span>
             
-            <span class="highlight-tag">UX research and B2B strategy</span>
+            <span class="highlight-tag">UX research and user testing</span>
             
-            <span class="highlight-tag">Digital transformation initiatives</span>
+            <span class="highlight-tag">Learned structured business development in banking</span>
             
           </div>
           
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3>Product Designer</h3>
-          <div class="company">Karla Plattform GmbH</div>
-          <div class="period">Apr 2021 - Oct 2022 // Greifswald, Germany</div>
-          <p>Product design and corporate identity for a digital platform venture
-within the Sparkasse ecosystem.</p>
-          
-          <div class="highlight-tags">
-            
-            <span class="highlight-tag">Corporate identity design</span>
-            
-            <span class="highlight-tag">Software development contribution</span>
-            
-            <span class="highlight-tag">Product-market fit research</span>
-            
-          </div>
-          
-        </div>
+      
+      <div class="timeline-more">
+        <a href="cv.html" data-i18n="view_full_cv">View full experience on CV &rarr;</a>
       </div>
       
     </div>
   </section>
 
+  <!-- Education — hidden on portfolio, full details on /cv -->
+  
+
+  <!-- Projects -->
+  
+  <div class="section-divider"></div>
+  <section class="section" id="projects">
+    <div class="section-label" data-i18n="label_projects">Projects</div>
+    <h2 class="section-title" data-i18n="title_projects">What I'm Working On</h2>
+    <p class="section-subtitle" data-i18n="subtitle_projects">Side ventures and ongoing projects.</p>
+    <div class="projects-grid">
+      
+      <div class="project-card">
+        <h3><a href="https://c-node.ai" target="_blank" rel="noopener">cNode — Decision Workspace</a></h3>
+        
+        <p>AI-augmented decision platform where teams define decisions, set weighted goals, state assumptions, create and compare scenarios, get LLM-powered recommendations, and export audit-ready decision logs. Full-stack SaaS with multi-provider AI abstraction, scoring engine, Monte Carlo analysis, and multi-tenant RBAC.</p>
+        
+        <div class="project-tech">
+          
+          <span>Next.js 14</span>
+          
+          <span>FastAPI</span>
+          
+          <span>PostgreSQL / TimescaleDB</span>
+          
+          <span>Celery / Redis</span>
+          
+          <span>Multi-Provider AI (Anthropic, OpenAI, Google)</span>
+          
+          <span>Docker Compose</span>
+          
+          <span>JWT / RBAC</span>
+          
+        </div>
+        
+        
+        <a href="https://c-node.ai" target="_blank" rel="noopener" class="project-link" data-i18n="visit_link">Visit &rarr;</a>
+        
+      </div>
+      
+      <div class="project-card">
+        <h3><a href="https://creativate.tech" target="_blank" rel="noopener">Creativate AIStudio</a></h3>
+        
+        <p>Deep-tech venture studio and consulting company. We build AI products and help companies integrate AI responsibly — EU AI Act compliant, business-first. Runs a monorepo ecosystem with company website, content hub, IP data room, and client platforms.</p>
+        
+        <div class="project-tech">
+          
+          <span>Next.js / TypeScript</span>
+          
+          <span>Turborepo</span>
+          
+          <span>Tailwind CSS</span>
+          
+          <span>Docker</span>
+          
+        </div>
+        
+        
+        <a href="https://creativate.tech" target="_blank" rel="noopener" class="project-link" data-i18n="visit_link">Visit &rarr;</a>
+        
+      </div>
+      
+      <div class="project-card">
+        <h3><a href="https://ai-playbook.eu" target="_blank" rel="noopener">AI Playbook</a></h3>
+        
+        <p>Multilingual AI compliance and regulatory knowledge base covering EU AI Act, GDPR, EDPB guidelines, and responsible AI practices. 30+ articles across 7 categories, interactive readiness assessments, full-text search, and glossary. Content-driven lead-gen tool.</p>
+        
+        <div class="project-tech">
+          
+          <span>Next.js / MDX</span>
+          
+          <span>i18n (DE/EN/FR)</span>
+          
+          <span>Full-Text Search</span>
+          
+          <span>HubSpot Analytics</span>
+          
+        </div>
+        
+        
+        <a href="https://ai-playbook.eu" target="_blank" rel="noopener" class="project-link" data-i18n="visit_link">Visit &rarr;</a>
+        
+      </div>
+      
+      <div class="project-card">
+        <h3><a href="https://gasvisor.eu" target="_blank" rel="noopener">Gasvisor — IoT Gas Management</a></h3>
+        <span class="project-role">Product Design Lead (Camsol Incubation)</span>
+        <p>IoT CO₂ management platform for facility managers. Smart sensors on gas bottles measure fill levels in real-time, feed data to a cloud dashboard, and trigger automated reordering via supplier networks. Led design system setup and UI refinement during early incubation at Camsol.</p>
+        
+        <div class="project-tech">
+          
+          <span>IoT Sensors</span>
+          
+          <span>Cloud Dashboard</span>
+          
+          <span>Mobile App</span>
+          
+          <span>Supplier API Integration</span>
+          
+        </div>
+        
+        
+        <a href="https://gasvisor.eu" target="_blank" rel="noopener" class="project-link" data-i18n="visit_link">Visit &rarr;</a>
+        
+      </div>
+      
+      <div class="project-card">
+        <h3><a href="https://checkme-app.com" target="_blank" rel="noopener">CheckMe — Digital Health Platform</a></h3>
+        <span class="project-role">Strategic Consultant (Camsol Incubation)</span>
+        <p>Digital health platform for breast cancer detection across African communities. Combines AI-powered self-check guides, a 24/7 health companion (Nia), provider network, and the CheckMate screening device for clinics. Consulted on platform architecture — structuring doctor-patient workflows and dashboard design.</p>
+        
+        <div class="project-tech">
+          
+          <span>Mobile App</span>
+          
+          <span>AI Health Companion</span>
+          
+          <span>Telemedicine</span>
+          
+          <span>Provider Network</span>
+          
+        </div>
+        
+        
+        <a href="https://checkme-app.com" target="_blank" rel="noopener" class="project-link" data-i18n="visit_link">Visit &rarr;</a>
+        
+      </div>
+      
+      <div class="project-card">
+        <h3><a href="https://skulup.com" target="_blank" rel="noopener">Skulup — White-Label LMS</a></h3>
+        <span class="project-role">Product Lead (Camsol Internal)</span>
+        <p>White-label Learning Management System targeting African education centers. Enables training institutes to create branded learning platforms, manage courses, enroll students, and collect payments via mobile money — all from a single dashboard. Built as an internal Camsol product, mobile-first and designed for low-bandwidth environments.</p>
+        
+        <div class="project-tech">
+          
+          <span>WordPress / Custom CMS</span>
+          
+          <span>Mobile-First Design</span>
+          
+          <span>Mobile Money Payments</span>
+          
+          <span>White-Label SaaS</span>
+          
+        </div>
+        
+        
+        <a href="https://skulup.com" target="_blank" rel="noopener" class="project-link" data-i18n="visit_link">Visit &rarr;</a>
+        
+      </div>
+      
+    </div>
+  </section>
+  
+
   <!-- Recommendations -->
   
   <div class="section-divider"></div>
   <section class="section">
-    <div class="section-label">Testimonials</div>
-    <h2 class="section-title">What Others Say</h2>
-    <p class="section-subtitle">Recommendations from colleagues and mentors.</p>
+    <div class="section-label" data-i18n="label_testimonials">Testimonials</div>
+    <h2 class="section-title" data-i18n="title_testimonials">What Others Say</h2>
+    <p class="section-subtitle" data-i18n="subtitle_testimonials">Recommendations from colleagues and mentors.</p>
     <div class="reco-grid">
       
       <div class="reco-card">
-        <blockquote>"Leonardo shows exceptional strategic thinking and execution power driving his startup forward."</blockquote>
+        <blockquote>"Leonardo is one of those people who just gets things done — he listens, adapts quickly, and brings real energy to the team."</blockquote>
         <div class="reco-author">Lisa Bennewitz</div>
         <div class="reco-role">Board Member, Entrepreneur, Investor</div>
       </div>
       
       <div class="reco-card">
-        <blockquote>"Exceptional engagement and strategic thinking in building the Karla Plattform."</blockquote>
+        <blockquote>"Leonardo brought genuine curiosity and commitment to the Karla Plattform project. He learned fast and wasn&#39;t afraid to ask the right questions."</blockquote>
         <div class="reco-author">Thomas Metzke</div>
         <div class="reco-role">Vorstand, Sparkasse Vorpommern</div>
       </div>
@@ -1231,15 +1909,15 @@ within the Sparkasse ecosystem.</p>
   
   <div class="section-divider"></div>
   <section class="section" id="posts">
-    <div class="section-label">Featured</div>
-    <h2 class="section-title">LinkedIn Posts</h2>
-    <p class="section-subtitle">Thoughts on product, technology, and building ventures.</p>
+    <div class="section-label" data-i18n="label_featured">Featured</div>
+    <h2 class="section-title" data-i18n="title_posts">LinkedIn Posts</h2>
+    <p class="section-subtitle" data-i18n="subtitle_posts">Thoughts on product, technology, and building ventures.</p>
     <div class="linkedin-grid">
       
       <a href="https://www.linkedin.com/feed/update/urn:li:activity:7419617084063502336/" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
         <div class="linkedin-card-header">
           
-          <img src="/adminleo-portfolio/assets/img/authors/eu_inc.jpg" alt="EU–INC" class="linkedin-card-avatar">
+          <img src="assets/img/authors/eu_inc.jpg" alt="EU–INC" class="linkedin-card-avatar">
           
           <div class="linkedin-card-meta">
             <div class="linkedin-card-author">EU–INC</div>
@@ -1256,13 +1934,13 @@ within the Sparkasse ecosystem.</p>
           <span class="linkedin-stat">&#128172; 596</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="read_linkedin">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/leonardo-bornh%C3%A4u%C3%9Fer_germany-spends-billions-on-ideas-that-never-activity-7395019693574619136-vCPk" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
         <div class="linkedin-card-header">
           
-          <img src="/adminleo-portfolio/assets/img/profile.jpg" alt="Leonardo Bornhaeusser" class="linkedin-card-avatar">
+          <img src="assets/img/profile.jpg" alt="Leonardo Bornhaeusser" class="linkedin-card-avatar">
           
           <div class="linkedin-card-meta">
             <div class="linkedin-card-author">Leonardo Bornhaeusser</div>
@@ -1272,14 +1950,14 @@ within the Sparkasse ecosystem.</p>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </span>
         </div>
-        <div class="linkedin-card-body">Germany spends ~129 billion euros annually on R&D — yet early-stage entrepreneurial activity remains roughly half the level of the US. Only 27 of 702 funded German startups in 2024 had all-female founding teams. We built Creativate AI Studio as a female-led, deep-tech initiative. Diverse teams aren't optional — they're how you maximize innovation potential.</div>
+        <div class="linkedin-card-body">Germany spends ~129 billion euros annually on R&amp;D — yet early-stage entrepreneurial activity remains roughly half the level of the US. Only 27 of 702 funded German startups in 2024 had all-female founding teams. We built Creativate AI Studio as a female-led, deep-tech initiative. Diverse teams aren&#39;t optional — they&#39;re how you maximize innovation potential.</div>
         
         <div class="linkedin-card-stats">
           <span class="linkedin-stat">&#128077; 62</span>
           <span class="linkedin-stat">&#128172; 8</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="read_linkedin">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/janseidemann_das-erste-female-founder-programm-von-activity-7394287918678241280-cYc5" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1295,20 +1973,20 @@ within the Sparkasse ecosystem.</p>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </span>
         </div>
-        <div class="linkedin-card-body">Futury just launched their first female founder program — 'Scale, Grow & Connect for Women-Led Ventures' with 13 startups including Creativate AIStudio. Leadership development, corporate partnerships, and strategic networking in the Rhine-Main region. Super valuable knowledge-sharing and a safe space for open exchange.</div>
+        <div class="linkedin-card-body">Futury just launched their first female founder program — &#39;Scale, Grow &amp; Connect for Women-Led Ventures&#39; with 13 startups including Creativate AIStudio. Leadership development, corporate partnerships, and strategic networking in the Rhine-Main region. Super valuable knowledge-sharing and a safe space for open exchange.</div>
         
         <div class="linkedin-card-stats">
           <span class="linkedin-stat">&#128077; 119</span>
           <span class="linkedin-stat">&#128172; 16</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="read_linkedin">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/landkreis-mittelsachsen_mut-kapital-wirkung-frauen-gestalten-ugcPost-7389619833786494976-hsDP" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
         <div class="linkedin-card-header">
           
-          <img src="/adminleo-portfolio/assets/img/authors/landkreis_mittelsachsen.jpg" alt="Landkreis Mittelsachsen" class="linkedin-card-avatar">
+          <img src="assets/img/authors/landkreis_mittelsachsen.jpg" alt="Landkreis Mittelsachsen" class="linkedin-card-avatar">
           
           <div class="linkedin-card-meta">
             <div class="linkedin-card-author">Landkreis Mittelsachsen</div>
@@ -1318,20 +1996,20 @@ within the Sparkasse ecosystem.</p>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </span>
         </div>
-        <div class="linkedin-card-body">Speaking at the 9th Wirtschaftsfrauen networking event in Mittelsachsen on 'Investing Reimagined: Business Angels, Women Power, and Tokenization.' How women can translate capital, knowledge, and values into real impact — alongside Christoph Jentzsch from Tokenize.it on democratizing investments.</div>
+        <div class="linkedin-card-body">Speaking at the 9th Wirtschaftsfrauen networking event in Mittelsachsen on &#39;Investing Reimagined: Business Angels, Women Power, and Tokenization.&#39; How women can translate capital, knowledge, and values into real impact — alongside Christoph Jentzsch from Tokenize.it on democratizing investments.</div>
         
         <div class="linkedin-card-stats">
           <span class="linkedin-stat">&#128077; 74</span>
           <span class="linkedin-stat">&#128172; 6</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="read_linkedin">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/leonardo-bornh%C3%A4u%C3%9Fer_bootstrapping-deeptech-xletix-activity-7348995660454490114-dvav" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
         <div class="linkedin-card-header">
           
-          <img src="/adminleo-portfolio/assets/img/profile.jpg" alt="Leonardo Bornhaeusser" class="linkedin-card-avatar">
+          <img src="assets/img/profile.jpg" alt="Leonardo Bornhaeusser" class="linkedin-card-avatar">
           
           <div class="linkedin-card-meta">
             <div class="linkedin-card-author">Leonardo Bornhaeusser</div>
@@ -1341,14 +2019,14 @@ within the Sparkasse ecosystem.</p>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </span>
         </div>
-        <div class="linkedin-card-body">18km through mud, walls, and ice water — XLETIX was brutal. But building a deep-tech startup is the same race. We solved a critical ML architecture challenge in cNode, completely rebuilt our proof-of-concept to show substance over marketing, and relocated R&D to Linz. We don't run for headlines — we run for a vision.</div>
+        <div class="linkedin-card-body">18km through mud, walls, and ice water — XLETIX was brutal. But building a deep-tech startup is the same race. We solved a critical ML architecture challenge in cNode, completely rebuilt our proof-of-concept to show substance over marketing, and relocated R&amp;D to Linz. We don&#39;t run for headlines — we run for a vision.</div>
         
         <div class="linkedin-card-stats">
           <span class="linkedin-stat">&#128077; 43</span>
           <span class="linkedin-stat">&#128172; 7</span>
         </div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="read_linkedin">Read on LinkedIn &rarr;</span>
       </a>
       
       <a href="https://www.linkedin.com/posts/activity-7262738115109302273-4SAF" target="_blank" rel="noopener" class="linkedin-card" style="text-decoration:none;">
@@ -1366,30 +2044,74 @@ within the Sparkasse ecosystem.</p>
         </div>
         <div class="linkedin-card-body">From our recent activity — building at the intersection of explainable AI, tokenized fundraising, and European deep-tech. Follow along for updates on cNode, Creativate AI Studio, and the journey of turning research into real-world decision intelligence.</div>
         
-        <span class="linkedin-card-link">Read on LinkedIn &rarr;</span>
+        <span class="linkedin-card-link" data-i18n="read_linkedin">Read on LinkedIn &rarr;</span>
       </a>
       
     </div>
   </section>
   
 
-  <!-- Contact -->
+  <!-- Connect -->
   <div class="section-divider"></div>
-  <section class="section" id="contact">
-    <div class="contact-inner">
-      <h2><span class="gradient-text">Let's talk</span></h2>
-      <p>Open to conversations about product, technology, and building things that matter.</p>
-      <div class="contact-links">
-        <a href="mailto:leonardo@creativate.tech" class="contact-link">&#9993; Email</a>
-        <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="contact-link">&#128279; LinkedIn</a>
-        <a href="https://github.com/adminleo" target="_blank" rel="noopener" class="contact-link">&#128187; GitHub</a>
+  <section class="section" id="links">
+    <div class="section-label" data-i18n="label_connect">Connect</div>
+    <h2 class="section-title"><span class="gradient-text" data-i18n="title_connect">Let's talk</span></h2>
+    <p class="section-subtitle" data-i18n="contact_text">Open to conversations about product, technology, and building things that matter.</p>
+
+    <div class="connect-grid">
+      <a href="mailto:leonardo@creativate.tech" class="connect-card connect-card--primary">
+        <svg class="connect-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <div class="connect-info">
+          <span class="connect-label">Email</span>
+          <span class="connect-detail">leonardo@creativate.tech</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/leonardo-bornh%C3%A4u%C3%9Fer/" target="_blank" rel="noopener" class="connect-card connect-card--primary">
+        <svg class="connect-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <div class="connect-info">
+          <span class="connect-label">LinkedIn</span>
+          <span class="connect-detail" data-i18n="connect_linkedin_detail">View profile</span>
+        </div>
+      </a>
+      <a href="https://github.com/adminleo" target="_blank" rel="noopener" class="connect-card connect-card--primary">
+        <svg class="connect-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <div class="connect-info">
+          <span class="connect-label">GitHub</span>
+          <span class="connect-detail" data-i18n="connect_github_detail">View projects</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="connect-resources">
+      <span class="connect-resources-label" data-i18n="connect_resources_label">Resources</span>
+      <div class="resources-row">
+        <a href="cv.html" class="resource-chip">
+          <svg class="resource-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span data-i18n="link_cv">CV / Lebenslauf</span>
+        </a>
+        
+        <a href="https://c-node.ai" target="_blank" rel="noopener" class="resource-chip">
+          <svg class="resource-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>cNode — Decision Workspace</span>
+        </a>
+        
+        <a href="https://creativate.tech" target="_blank" rel="noopener" class="resource-chip">
+          <svg class="resource-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>Creativate AIStudio</span>
+        </a>
+        
+        <a href="https://ai-playbook.eu" target="_blank" rel="noopener" class="resource-chip">
+          <svg class="resource-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>AI Playbook</span>
+        </a>
+        
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    &copy; 2026 Leonardo Bornhaeusser // built in berlin
+    &copy; 2026 Leonardo Bornhaeusser · built in Berlin with ♡
   </footer>
 
   <!-- Floating PDF Download Button -->
@@ -1399,7 +2121,7 @@ within the Sparkasse ecosystem.</p>
   </button>
 
   <script>
-    // Scroll-triggered section animations
+    // ─── Scroll-triggered section animations ───
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1407,8 +2129,150 @@ within the Sparkasse ecosystem.</p>
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
     document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+    // ─── Burger Menu ───
+    function toggleMenu() {
+      const burger = document.querySelector('.burger');
+      const menu = document.getElementById('mobileMenu');
+      burger.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMenu() {
+      const burger = document.querySelector('.burger');
+      const menu = document.getElementById('mobileMenu');
+      burger.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ─── i18n Translations ───
+    const i18n = {
+      en: {
+        nav_about: "About", nav_services: "Stack", nav_experience: "Experience",
+        nav_education: "Education", nav_projects: "Projects", nav_posts: "Posts",
+        nav_links_nav: "Links", nav_contact: "Contact", nav_cv: "CV",
+        hero_subtitle: "Founder & CEO building AI decision software at Creativate. 11 years across product, venture building & business development. Open to part-time leadership, advisory & consulting roles.",
+        cta_talk: "Let\u2019s talk",
+        label_about: "About", title_about: "Background",
+        about_text: "Founder building AI decision software and collaborating with companies on product and innovation projects. As CEO & Co-Founder of Creativate AI Studio, I\u2019m developing cNode \u2014 a platform that helps teams structure complex decisions, compare scenarios, and generate explainable AI-assisted recommendations. Alongside the product, we launched AI Playbook, a multilingual knowledge base covering the EU AI Act, GDPR, and responsible AI adoption.\n\nOver the past decade I\u2019ve built and operated multiple ventures across product design, business development, and software. My work usually sits at the intersection of product strategy, AI, and early-stage execution \u2014 turning ideas into working systems and prototypes.\n\nIn addition to running Creativate, I collaborate with companies on part-time or project engagements around product strategy, AI product development, MVP architecture, and early-stage venture building. I enjoy working with small teams that move quickly and build meaningful products.",
+        label_services: "Services", title_services: "What I Do",
+        subtitle_services: "How I help companies build great products and scale effectively.",
+        label_career: "Career", title_experience: "Experience",
+        subtitle_experience: "Where I\u2019ve built, led, and learned.",
+        label_education: "Education", title_education: "Education",
+        subtitle_education: "Academic background and certifications.",
+        label_projects: "Projects", title_projects: "What I\u2019m Building",
+        subtitle_projects: "Active ventures and products.",
+        label_connect: "Connect", title_connect: "Let\u2019s talk",
+        contact_text: "Open to conversations about product, technology, and building things that matter.",
+        connect_linkedin_detail: "View profile",
+        connect_github_detail: "View projects",
+        connect_resources_label: "Resources",
+        link_cv: "CV / Lebenslauf",
+        label_testimonials: "Testimonials", title_testimonials: "What Others Say",
+        subtitle_testimonials: "Recommendations from colleagues and mentors.",
+        label_featured: "Featured", title_posts: "LinkedIn Posts",
+        subtitle_posts: "Thoughts on product, technology, and building ventures.",
+        visit_link: "Visit \u2192",
+        view_full_cv: "View full experience on CV \u2192",
+        read_linkedin: "Read on LinkedIn \u2192"
+      },
+      de: {
+        nav_about: "\u00dcber mich", nav_services: "Kompetenzen", nav_experience: "Erfahrung",
+        nav_education: "Bildung", nav_projects: "Projekte", nav_posts: "Beitr\u00e4ge",
+        nav_links_nav: "Links", nav_contact: "Kontakt", nav_cv: "Lebenslauf",
+        hero_subtitle: "Gr\u00fcnder & CEO \u2014 baue KI-Entscheidungssoftware bei Creativate. 11 Jahre Erfahrung in Produktentwicklung, Venture Building und Gesch\u00e4ftsentwicklung. Verf\u00fcgbar f\u00fcr Teilzeit-F\u00fchrungsrollen, Beratung und Consulting-Mandate.",
+        cta_talk: "Kontakt aufnehmen",
+        label_about: "\u00dcber mich", title_about: "Hintergrund",
+        about_text: "Ich baue KI-Entscheidungssoftware und arbeite mit Unternehmen an Produkt- und Innovationsprojekten. Als CEO & Co-Founder von Creativate AI Studio entwickle ich cNode \u2014 eine Plattform, mit der Teams komplexe Entscheidungen strukturieren, Szenarien vergleichen und erkl\u00e4rbare, KI-gest\u00fctzte Empfehlungen generieren k\u00f6nnen. Parallel dazu haben wir AI Playbook aufgebaut \u2014 eine mehrsprachige Wissensdatenbank zu EU AI Act, DSGVO und verantwortungsvollem KI-Einsatz.\n\nIn den letzten elf Jahren habe ich mehrere Unternehmen gegr\u00fcndet und aufgebaut \u2014 an der Schnittstelle von Produktdesign, Business Development und Softwareentwicklung. Mein Fokus liegt darauf, Ideen in funktionierende Systeme und Prototypen zu verwandeln.\n\nNeben meiner Arbeit bei Creativate unterst\u00fctze ich Unternehmen in Teilzeit oder projektbezogen \u2014 etwa bei Produktstrategie, KI-Produktentwicklung, MVP-Architektur oder Venture Building in der Fr\u00fchphase. Am liebsten arbeite ich in kleinen, ambitionierten Teams, die Wert auf Ergebnisse legen.",
+        label_services: "Leistungen", title_services: "Was ich mache",
+        subtitle_services: "So unterst\u00fctze ich Unternehmen beim Aufbau starker Produkte und nachhaltigem Wachstum.",
+        label_career: "Karriere", title_experience: "Berufserfahrung",
+        subtitle_experience: "Stationen, an denen ich aufgebaut, gef\u00fchrt und gelernt habe.",
+        label_education: "Bildung", title_education: "Ausbildung",
+        subtitle_education: "Akademischer Werdegang und Zertifizierungen.",
+        label_projects: "Projekte", title_projects: "Aktuelle Projekte",
+        subtitle_projects: "Laufende Ventures und Produkte.",
+        label_connect: "Kontakt", title_connect: "Sprechen wir dar\u00fcber",
+        contact_text: "Offen f\u00fcr Gespr\u00e4che rund um Produkt, Technologie und Projekte, die etwas bewegen.",
+        connect_linkedin_detail: "Profil ansehen",
+        connect_github_detail: "Projekte ansehen",
+        connect_resources_label: "Ressourcen",
+        link_cv: "Lebenslauf / CV",
+        label_testimonials: "Referenzen", title_testimonials: "Stimmen",
+        subtitle_testimonials: "Empfehlungen von Kollegen und Mentoren.",
+        label_featured: "Ausgew\u00e4hlt", title_posts: "LinkedIn-Beitr\u00e4ge",
+        subtitle_posts: "Gedanken zu Produkt, Technologie und Unternehmertum.",
+        visit_link: "Ansehen \u2192",
+        view_full_cv: "Alle Stationen im Lebenslauf \u2192",
+        read_linkedin: "Auf LinkedIn lesen \u2192"
+      },
+      fr: {
+        nav_about: "Profil", nav_services: "Comp\u00e9tences", nav_experience: "Parcours",
+        nav_education: "Formation", nav_projects: "Projets", nav_posts: "Publications",
+        nav_links_nav: "Liens", nav_contact: "Contact", nav_cv: "CV",
+        hero_subtitle: "Fondateur & CEO \u2014 je d\u00e9veloppe un logiciel d\u2019aide \u00e0 la d\u00e9cision par IA chez Creativate. 11 ans d\u2019exp\u00e9rience en produit, venture building et d\u00e9veloppement commercial. Disponible pour des missions de leadership, de conseil et de consulting \u00e0 temps partiel.",
+        cta_talk: "Me contacter",
+        label_about: "Profil", title_about: "Parcours",
+        about_text: "Je d\u00e9veloppe des logiciels d\u2019aide \u00e0 la d\u00e9cision par IA et j\u2019accompagne des entreprises sur des projets produit et innovation. En tant que CEO & co-fondateur de Creativate AI Studio, je travaille sur cNode \u2014 une plateforme qui permet aux \u00e9quipes de structurer des d\u00e9cisions complexes, de comparer des sc\u00e9narios et de g\u00e9n\u00e9rer des recommandations explicables assist\u00e9es par l\u2019IA. En parall\u00e8le, nous avons lanc\u00e9 AI Playbook, une base de connaissances multilingue couvrant le R\u00e8glement europ\u00e9en sur l\u2019IA, le RGPD et l\u2019adoption responsable de l\u2019intelligence artificielle.\n\nDepuis plus de dix ans, j\u2019ai cr\u00e9\u00e9 et dirig\u00e9 plusieurs entreprises \u00e0 la crois\u00e9e du design produit, du d\u00e9veloppement commercial et du logiciel. Mon approche consiste \u00e0 transformer des id\u00e9es en syst\u00e8mes fonctionnels et en prototypes concrets \u2014 l\u00e0 o\u00f9 strat\u00e9gie produit, IA et ex\u00e9cution se rencontrent.\n\nEn parall\u00e8le de Creativate, j\u2019interviens en temps partiel ou en mission ponctuelle sur des sujets de strat\u00e9gie produit, de d\u00e9veloppement IA, d\u2019architecture MVP et de venture building. Je privil\u00e9gie les \u00e9quipes agiles et ambitieuses, tourn\u00e9es vers l\u2019impact.",
+        label_services: "Services", title_services: "Ce que je fais",
+        subtitle_services: "Comment j\u2019accompagne les entreprises dans la cr\u00e9ation de produits performants et leur croissance.",
+        label_career: "Carri\u00e8re", title_experience: "Exp\u00e9rience professionnelle",
+        subtitle_experience: "Les \u00e9tapes cl\u00e9s de mon parcours.",
+        label_education: "Formation", title_education: "Formation",
+        subtitle_education: "Parcours acad\u00e9mique et certifications.",
+        label_projects: "Projets", title_projects: "Mes projets",
+        subtitle_projects: "Ventures en cours et produits actifs.",
+        label_connect: "Contact", title_connect: "\u00c9changeons",
+        contact_text: "Ouvert aux \u00e9changes sur le produit, la technologie et les projets \u00e0 fort impact.",
+        connect_linkedin_detail: "Voir le profil",
+        connect_github_detail: "Voir les projets",
+        connect_resources_label: "Ressources",
+        link_cv: "CV / Curriculum Vitae",
+        label_testimonials: "T\u00e9moignages", title_testimonials: "Ce qu\u2019on dit de moi",
+        subtitle_testimonials: "Recommandations de coll\u00e8gues et mentors.",
+        label_featured: "\u00c0 la une", title_posts: "Publications LinkedIn",
+        subtitle_posts: "R\u00e9flexions sur le produit, la technologie et l\u2019entrepreneuriat.",
+        visit_link: "D\u00e9couvrir \u2192",
+        view_full_cv: "Parcours complet dans le CV \u2192",
+        read_linkedin: "Lire sur LinkedIn \u2192"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function switchLang(lang) {
+      currentLang = lang;
+      const strings = i18n[lang];
+      if (!strings) return;
+
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (strings[key]) {
+          el.textContent = strings[key];
+        }
+      });
+
+      // Update active state on all lang buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+      });
+
+      // Update html lang attribute
+      document.documentElement.lang = lang;
+
+      // Persist choice
+      try { localStorage.setItem('portfolio_lang', lang); } catch(e) {}
+    }
+
+    // Restore language preference
+    try {
+      const saved = localStorage.getItem('portfolio_lang');
+      if (saved && i18n[saved]) switchLang(saved);
+    } catch(e) {}
   </script>
 
 </body>
